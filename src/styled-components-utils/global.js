@@ -30,7 +30,7 @@ img {
 
 /* Minimal CSS Reset End */
 
-html {
+body {
     font-family: 'Roboto', sans-serif;
 }
 `;

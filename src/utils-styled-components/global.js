@@ -32,6 +32,7 @@ img {
 
 body {
     font-family: 'Roboto', sans-serif;
+    color: ${props => props.theme.colors.neutralColor1}
 }
 `;
 

@@ -4,8 +4,8 @@ import App from "./components/App/index";
 import * as serviceWorker from "./serviceWorker";
 
 import { ThemeProvider } from "styled-components";
-import GlobalStyle from "./styled-components-utils/global";
-import { lightTheme, darkTheme } from "./styled-components-utils/themes";
+import GlobalStyle from "./utils-styled-components/global";
+import { lightTheme } from "./utils-styled-components/themes";
 
 ReactDOM.render(
   <ThemeProvider theme={lightTheme}>

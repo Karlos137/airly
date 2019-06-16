@@ -3,13 +3,17 @@ import ReactDOM from "react-dom";
 import App from "./components/App/index";
 import * as serviceWorker from "./serviceWorker";
 
+import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styled-components-utils/global";
+import { lightTheme, darkTheme } from "./styled-components-utils/themes";
 
 ReactDOM.render(
-  <>
-    <GlobalStyle />
-    <App />
-  </>,
+  <ThemeProvider theme={lightTheme}>
+    <>
+      <GlobalStyle />
+      <App />
+    </>
+  </ThemeProvider>,
   document.getElementById("root")
 );
 

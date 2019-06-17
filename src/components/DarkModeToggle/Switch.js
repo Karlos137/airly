@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-const Switch = styled.label`
+const Switch = styled.div`
   position: relative;
   display: inline-block;
   width: 50px;
   height: 24px;
+  cursor: pointer;
 `;
 
 export default Switch;

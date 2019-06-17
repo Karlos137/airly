@@ -1,29 +1,26 @@
 import styled from "styled-components";
 
-const Slider = styled.span`
+const Slider = styled.label`
   position: absolute;
-  cursor: pointer;
+  width: 50px;
+  height: 24px;
+  background-color: ${props => props.theme.colors.neutralColor5};
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: ${props => props.theme.colors.neutralColor5};
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
   border-radius: 24px;
+  z-index: -1;
+  cursor: pointer;
 
-  &:before {
+  &::after {
     position: absolute;
     content: "";
     height: 20px;
     width: 20px;
     top: 2px;
-    left: 3px;
-    bottom: 2px;
+    left: ${props => (props.checked ? "27px" : "3px")};
     background-color: ${props => props.theme.colors.neutralColor2};
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
     border-radius: 50%;
+    transition: all 0.7s;
   }
 `;
 

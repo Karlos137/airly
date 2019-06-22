@@ -7,10 +7,12 @@ import Header from "../Header/index";
 const App = () => {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/" component={Header} />
-      </Switch>
+      <>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/" component={Header} />
+        </Switch>
+      </>
     </BrowserRouter>
   );
 };

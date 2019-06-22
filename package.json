@@ -8,7 +8,8 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "styled-components": "^5.0.0-beta.0"
+    "styled-components": "^5.0.0-beta.0",
+    "styled-icons": "^8.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

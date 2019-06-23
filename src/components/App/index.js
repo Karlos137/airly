@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import LandingPage from "../pages/LandingPage/index";
-import Header from "../Header/index";
+import MainPage from "../pages/MainPage/index";
 
 const App = () => {
   return (
@@ -10,7 +10,7 @@ const App = () => {
       <>
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/" component={Header} />
+          <Route path="/home" component={MainPage} />
         </Switch>
       </>
     </BrowserRouter>

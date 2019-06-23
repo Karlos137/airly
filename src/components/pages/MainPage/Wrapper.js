@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  position: relative;
-  margin: 45px auto;
-  width: 305px;
-  height: 45px;
+  background-color: ${props => props.theme.colors.backgroundColor3};
+  height: 100vh;
 `;
 
 export default Wrapper;

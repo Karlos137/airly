@@ -5,6 +5,8 @@ import Header from "../../Header/index";
 import SelectInput from "../../SelectInput/index";
 import DarkModeToggle from "../../DarkModeToggle/index";
 
+import WeatherItem from "../../WeatherItem/index";
+
 const MainPage = props => {
   return (
     <Wrapper>

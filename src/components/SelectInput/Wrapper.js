@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   position: relative;
-  margin: 45px auto;
+  margin: ${props => props.margin} auto 0;
   width: 305px;
   height: 45px;
 `;

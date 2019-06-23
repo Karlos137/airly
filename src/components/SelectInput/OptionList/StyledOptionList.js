@@ -7,6 +7,8 @@ const StyledOptionList = styled.div`
   box-shadow: 0px 3px 7px ${props => props.theme.colors.dropBoxShadow};
   padding: 15px 15px 0;
   display: ${props => (props.isOpen ? "inline-block" : "none")};
+  position: relative;
+  z-index: 2;
 `;
 
 export default StyledOptionList;

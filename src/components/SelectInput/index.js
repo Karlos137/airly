@@ -7,6 +7,7 @@ import OptionList from "./OptionList/index";
 
 const SelectInput = props => {
   const [optionListOpen, setOptionList] = useState(false);
+
   const handleChange = e => {
     if (e.target.value !== "") {
       setOptionList(true);
@@ -18,7 +19,7 @@ const SelectInput = props => {
     setOptionList(!optionListOpen);
   };
   return (
-    <Wrapper>
+    <Wrapper margin={props.marginTop || "45px"}>
       <StyledSelectInput placeholder="Select city" onChange={handleChange} />
       <ArrowIcon size="32" onClick={handleClick} />
       <OptionList isOpen={optionListOpen} />

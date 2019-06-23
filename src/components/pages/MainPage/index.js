@@ -5,11 +5,17 @@ import Header from "../../Header/index";
 import SelectInput from "../../SelectInput/index";
 import DarkModeToggle from "../../DarkModeToggle/index";
 
-const MainPage = () => {
+const MainPage = props => {
   return (
     <Wrapper>
       <Header />
-      <SelectInput />
+      {props.tab === "compare" ? (
+        <>
+          <SelectInput /> <SelectInput marginTop={"20px"} />
+        </>
+      ) : (
+        <SelectInput />
+      )}
       <DarkModeToggle />
     </Wrapper>
   );

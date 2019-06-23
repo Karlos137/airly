@@ -9,6 +9,7 @@ const lightTheme = {
     neutralColor3: "#ACB6C4",
     neutralColor5: "#DFE5ED",
     neutralColor7: "#F9FBFF",
+    accentGreenColor3: "#24AC5E",
     backgroundColor3: "#F4F6F7",
     backgroundColor4: "#FFFFFF",
     dropBoxShadow: "rgba(62, 71, 83, 0.1)"

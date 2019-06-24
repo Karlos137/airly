@@ -32,8 +32,13 @@ img {
 
 body {
     font-family: 'Roboto', sans-serif;
-    color: ${props => props.theme.colors.neutralColor1}
+    color: ${props =>
+      props.theme.colors.darkNeutralColor7 || props.theme.colors.neutralColor1};
+    background-color: ${props =>
+      props.theme.colors.darkBackgroundColor2 ||
+      props.theme.colors.backgroundColor4};
 }
+
 `;
 
 export default GlobalStyle;

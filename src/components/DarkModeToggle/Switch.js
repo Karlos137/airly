@@ -6,6 +6,7 @@ const Switch = styled.div`
   width: 50px;
   height: 24px;
   cursor: pointer;
+  margin: auto;
 `;
 
 export default Switch;

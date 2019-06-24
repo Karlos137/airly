@@ -20,8 +20,10 @@ const lightTheme = {
 const darkTheme = {
   colors: {
     darkPrimaryColor4: "#FD5C63",
+    darkSecondaryColor3: "#439EA1",
     darkNeutralColor7: "#F9FBFF",
-    darkBackgroundColor2: "#333333"
+    darkBackgroundColor2: "#333333",
+    darkBackgroundColor4: "#5B5B5B"
   }
 };
 

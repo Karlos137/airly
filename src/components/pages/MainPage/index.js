@@ -15,6 +15,7 @@ import AqiItems from "./AqiItems";
 
 import Header from "../../Header/index";
 import SelectInput from "../../SelectInput/index";
+import CityImage from "./CityImage/index";
 import WeatherItem from "../../WeatherItem/index";
 import AqiItem from "../../AqiItem/index";
 import DarkModeToggle from "../../DarkModeToggle/index";
@@ -51,6 +52,7 @@ const MainPage = props => {
       ) : (
         <>
           <SelectInput />
+          <CityImage src="https://hoodline.imgix.net/uploads/story/image/417236/..destination_photo_url..PRAG-sky.jpg.jpg?auto=format" />
           <Title>WEATHER</Title>
           <WeatherItems>
             <WeatherItem name="temp" />

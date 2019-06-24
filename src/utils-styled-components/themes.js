@@ -21,6 +21,7 @@ const darkTheme = {
   colors: {
     darkPrimaryColor4: "#FD5C63",
     darkSecondaryColor2: "#187F82",
+    darkSecondaryColor3: "#439EA1",
     darkSecondaryColor4: "#91D1D3",
     darkSecondaryColor6: "#B3E3E4",
     darkNeutralColor2: "#828C9A",

@@ -3,20 +3,13 @@ import ReactDOM from "react-dom";
 import App from "./components/App/index";
 import * as serviceWorker from "./serviceWorker";
 
-import { ThemeProvider } from "styled-components";
-import GlobalStyle from "./utils-styled-components/global";
-import { lightTheme, darkTheme } from "./utils-styled-components/themes";
-
-import { ThemeContext } from "./context/ThemeContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 // const [darkMode] = useContext(ThemeContext);
 
 ReactDOM.render(
-  <ThemeProvider theme={true ? darkTheme : lightTheme}>
-    <>
-      <GlobalStyle />
-      <App />
-    </>
+  <ThemeProvider>
+    <App />
   </ThemeProvider>,
   document.getElementById("root")
 );

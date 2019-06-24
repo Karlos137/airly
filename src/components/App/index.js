@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "../../utils-styled-components/global";
+import { lightTheme, darkTheme } from "../../utils-styled-components/themes";
 
 import LandingPage from "../pages/LandingPage/index";
 import MainPage from "../pages/MainPage/index";
 
 //context providers
-import { ThemeProvider } from "../../context/ThemeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const App = () => {
+  const [darkMode] = useContext(ThemeContext);
+
   return (
-    <BrowserRouter>
-      <ThemeProvider>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <BrowserRouter>
+        <GlobalStyle />
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/home" component={MainPage} />
@@ -19,8 +26,8 @@ const App = () => {
             render={props => <MainPage {...props} tab={"compare"} />}
           />
         </Switch>
-      </ThemeProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

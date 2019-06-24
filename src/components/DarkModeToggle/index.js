@@ -11,7 +11,7 @@ import { ThemeContext } from "../../context/ThemeContext";
 
 const DarkModeToggle = () => {
   const [isChecked, setIsChecked] = useState(false);
-  const [darkTheme, setDarkTheme] = useContext(ThemeContext);
+  const [, setDarkTheme] = useContext(ThemeContext);
 
   const handleClick = () => {
     if (isChecked) {

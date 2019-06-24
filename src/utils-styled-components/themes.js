@@ -17,6 +17,12 @@ const lightTheme = {
   }
 };
 
-const darkTheme = {};
+const darkTheme = {
+  colors: {
+    darkPrimaryColor4: "#FD5C63",
+    darkNeutralColor7: "#F9FBFF",
+    darkBackgroundColor2: "#333333"
+  }
+};
 
 export { lightTheme, darkTheme };

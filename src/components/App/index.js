@@ -4,10 +4,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from "../pages/LandingPage/index";
 import MainPage from "../pages/MainPage/index";
 
+//context providers
+import { ThemeProvider } from "../../context/ThemeContext";
+
 const App = () => {
   return (
     <BrowserRouter>
-      <>
+      <ThemeProvider>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/home" component={MainPage} />
@@ -16,7 +19,7 @@ const App = () => {
             render={props => <MainPage {...props} tab={"compare"} />}
           />
         </Switch>
-      </>
+      </ThemeProvider>
     </BrowserRouter>
   );
 };

@@ -4,6 +4,7 @@ import DarkModeToggle from "../../DarkModeToggle/index";
 
 //svg imports as React components
 import { ReactComponent as Logo } from "../../../images/logo-big.svg";
+import { ReactComponent as LogoDarkMode } from "../../../images/logo-big-dark-mode.svg";
 
 //styled components imports
 import LogoWrapper from "./LogoWrapper";
@@ -14,7 +15,7 @@ const LandingPage = () => {
   return (
     <>
       <LogoWrapper>
-        <Logo />
+        <LogoDarkMode />
       </LogoWrapper>
       <Paragraph fontSize={"22px"} marginTop={"20px"}>
         Weather &amp; air quality index for cities all around the world.

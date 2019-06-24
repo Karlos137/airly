@@ -5,7 +5,9 @@ const ArrowDown = styled(ChevronDown)`
   position: absolute;
   right: 10px;
   top: 7px;
-  color: ${props => props.theme.colors.secondaryColor1};
+  color: ${props =>
+    props.theme.colors.darkSecondaryColor4 ||
+    props.theme.colors.secondaryColor1};
 `;
 
 export default ArrowDown;

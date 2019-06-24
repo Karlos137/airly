@@ -20,8 +20,18 @@ const lightTheme = {
 const darkTheme = {
   colors: {
     darkPrimaryColor4: "#FD5C63",
+    darkSecondaryColor2: "#187F82",
+    darkSecondaryColor4: "#91D1D3",
+    darkSecondaryColor6: "#B3E3E4",
+    darkNeutralColor2: "#828C9A",
+    darkNeutralColor3: "#ACB6C4",
     darkNeutralColor7: "#F9FBFF",
-    darkBackgroundColor2: "#333333"
+    darkAccentGreenColor3: "#24AC5E",
+    darkBackgroundColor1: "#121212",
+    darkBackgroundColor2: "#333333",
+    darkBackgroundColor3: "#424242",
+    darkBackgroundColor4: "#5B5B5B",
+    darkDropBoxShadow: "rgba(205, 214, 226, 0.4);"
   }
 };
 

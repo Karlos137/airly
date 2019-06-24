@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   height: ${props => (props.compare ? "170px" : "110px")};
-  background-color: ${props => props.theme.colors.backgroundColor4};
+  background-color: ${props =>
+    props.theme.colors.darkBackgroundColor4 ||
+    props.theme.colors.backgroundColor4};
   margin: ${props => (props.compare ? "0px" : "20px 35px 0px")};
   padding-top: ${props => (props.compare ? "15px" : "0px")};
   position: relative;

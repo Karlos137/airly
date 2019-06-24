@@ -8,7 +8,9 @@ const Text = styled.span`
   text-align: center;
   font-size: 24px;
   font-weight: 700;
-  color: ${props => props.theme.colors.accentGreenColor3};
+  color: ${props =>
+    props.theme.colors.darkAccentGreenColor3 ||
+    props.theme.colors.accentGreenColor3};
 `;
 
 export default Text;

@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   max-width: ${props => (props.compare ? "135px" : "auto")};
 
   @media (${props => props.theme.mediaQueries.tablet}) {
-    max-width: ${props => (props.compare ? "135px" : "308px")};
+    max-width: ${props => (props.compare ? "160px" : "308px")};
     margin: 0px;
   }
 `;

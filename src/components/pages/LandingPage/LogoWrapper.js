@@ -7,6 +7,10 @@ const LogoWrapper = styled.div`
   @media (${props => props.theme.mediaQueries.tablet}) {
     padding-top: 255px;
   }
+
+  @media (${props => props.theme.mediaQueries.desktop}) {
+    padding-top: 180px;
+  }
 `;
 
 export default LogoWrapper;

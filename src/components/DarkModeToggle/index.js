@@ -9,7 +9,7 @@ import Slider from "./Slider";
 //context imports
 import { ThemeContext } from "../../context/ThemeContext";
 
-const DarkModeToggle = () => {
+const DarkModeToggle = props => {
   const [isChecked, setIsChecked] = useState(false);
   const [, setDarkTheme] = useContext(ThemeContext);
 
@@ -22,9 +22,9 @@ const DarkModeToggle = () => {
       setIsChecked(true);
     }
   };
-
+  console.log(props.for);
   return (
-    <ToggleWrapper>
+    <ToggleWrapper for={props.for}>
       <Text>DARK MODE</Text>
       <Switch onClick={handleClick}>
         {isChecked ? <Slider checked /> : <Slider />}

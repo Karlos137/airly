@@ -19,6 +19,10 @@ const StyledSelectInput = styled.input`
     color: ${props =>
       props.theme.colors.darkNeutralColor3 || props.theme.colors.neutralColor3};
   }
+
+  @media (${props => props.theme.mediaQueries.desktop}) {
+    width: 350px;
+  }
 `;
 
 export default StyledSelectInput;

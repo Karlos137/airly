@@ -15,6 +15,11 @@ const Wrapper = styled.div`
     max-width: ${props => (props.compare ? "160px" : "308px")};
     margin: 0px;
   }
+
+  @media (${props => props.theme.mediaQueries.desktop}) {
+    max-width: ${props => (props.compare ? "210px" : "308px")};
+    width: ${props => (props.compare ? "210px" : "308px")};
+  }
 `;
 
 export default Wrapper;

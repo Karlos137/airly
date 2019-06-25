@@ -3,6 +3,7 @@ import React from "react";
 //styled components
 import Wrapper from "./Wrapper";
 import Title from "./Title";
+import Content from "./Content";
 import WeatherItems from "./WeatherItems";
 import Text from "./Text";
 import HighlightedText from "./HighlightedText";
@@ -57,22 +58,28 @@ const MainPage = props => {
           <>
             <SelectInput />
             <CityImage src="https://hoodline.imgix.net/uploads/story/image/417236/..destination_photo_url..PRAG-sky.jpg.jpg?auto=format" />
-            <Title>WEATHER</Title>
-            <WeatherItems>
-              <WeatherItem name="temp" />
-              <WeatherItem name="wind" />
-              <WeatherItem name="hum" />
-            </WeatherItems>
-            <Title>AIR POLLUTION</Title>
-            <AqiItemWrapper>
-              <AqiItem />
-              <div />
-              <NavLink to="/compare">COMPARE</NavLink>
-            </AqiItemWrapper>
+            <Content>
+              <div>
+                <Title>WEATHER</Title>
+                <WeatherItems>
+                  <WeatherItem name="temp" />
+                  <WeatherItem name="wind" />
+                  <WeatherItem name="hum" />
+                </WeatherItems>
+              </div>
+              <div>
+                <Title>AIR POLLUTION</Title>
+                <AqiItemWrapper>
+                  <AqiItem />
+                  <div />
+                  <NavLink to="/compare">COMPARE</NavLink>
+                </AqiItemWrapper>
+              </div>
+            </Content>
           </>
         )}
       </ContentWrapper>
-      <DarkModeToggle />
+      <DarkModeToggle for="mobile" />
     </Wrapper>
   );
 };

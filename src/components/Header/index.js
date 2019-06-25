@@ -5,7 +5,9 @@ import { ReactComponent as LogoDarkMode } from "../../images/logo-small-dark-mod
 
 import StyledHeader from "./StyledHeader";
 import LogoWrapper from "./LogoWrapper";
+import Wrapper from "./Wrapper";
 import Tabs from "./Tabs/index";
+import DarkModeToggle from "../DarkModeToggle/index";
 
 import { ThemeContext } from "../../context/ThemeContext";
 
@@ -14,7 +16,11 @@ const Header = () => {
   return (
     <StyledHeader>
       <LogoWrapper>{darkTheme ? <LogoDarkMode /> : <Logo />}</LogoWrapper>
-      <Tabs />
+      <Wrapper>
+        <div />
+        <Tabs />
+        <DarkModeToggle />
+      </Wrapper>
     </StyledHeader>
   );
 };

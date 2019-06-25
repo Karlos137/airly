@@ -17,7 +17,8 @@ const lightTheme = {
     dropBoxShadow: "rgba(62, 71, 83, 0.1)"
   },
   mediaQueries: {
-    tablet: "min-width: 768px"
+    tablet: "min-width: 768px",
+    desktop: "min-width: 1024px"
   }
 };
 
@@ -39,7 +40,8 @@ const darkTheme = {
     darkDropBoxShadow: "rgba(205, 214, 226, 0.4);"
   },
   mediaQueries: {
-    tablet: "min-width: 768px"
+    tablet: "min-width: 768px",
+    desktop: "min-width: 1024px"
   }
 };
 

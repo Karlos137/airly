@@ -9,6 +9,11 @@ const Cities = styled.div`
     grid-template-columns: auto 160px auto;
     justify-content: center;
   }
+
+  @media (${props => props.theme.mediaQueries.desktop}) {
+    margin-top: 45px;
+    grid-template-columns: auto 265px auto;
+  }
 `;
 
 export default Cities;

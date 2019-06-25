@@ -10,6 +10,10 @@ const AqiItems = styled.div`
     grid-template-columns: 160px 90px 160px;
     justify-content: center;
   }
+
+  @media (${props => props.theme.mediaQueries.desktop}) {
+    grid-template-columns: 210px 150px 210px;
+  }
 `;
 
 export default AqiItems;

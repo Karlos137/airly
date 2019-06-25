@@ -14,6 +14,7 @@ import CityCountry from "./CityCountry";
 import AqiItems from "./AqiItems";
 import ContentWrapper from "./ContentWrapper";
 import AqiItemWrapper from "./AqiItemWrapper";
+import NavLink from "./NavLink";
 
 import Header from "../../Header/index";
 import SelectInput from "../../SelectInput/index";
@@ -66,6 +67,7 @@ const MainPage = props => {
             <AqiItemWrapper>
               <AqiItem />
               <div />
+              <NavLink to="/compare">COMPARE</NavLink>
             </AqiItemWrapper>
           </>
         )}

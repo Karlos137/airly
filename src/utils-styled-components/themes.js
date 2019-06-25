@@ -2,6 +2,7 @@ const lightTheme = {
   colors: {
     primaryColor4: "#FD5C63",
     secondaryColor1: "#085E60",
+    secondaryColor2: "#187F82",
     secondaryColor3: "#439EA1",
     secondaryColor4: "#6BB7B9",
     neutralColor1: "#3E4753",

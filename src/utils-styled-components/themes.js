@@ -14,6 +14,9 @@ const lightTheme = {
     backgroundColor3: "#F4F6F7",
     backgroundColor4: "#FFFFFF",
     dropBoxShadow: "rgba(62, 71, 83, 0.1)"
+  },
+  mediaQueries: {
+    tablet: "min-width: 768px"
   }
 };
 
@@ -33,6 +36,9 @@ const darkTheme = {
     darkBackgroundColor3: "#424242",
     darkBackgroundColor4: "#5B5B5B",
     darkDropBoxShadow: "rgba(205, 214, 226, 0.4);"
+  },
+  mediaQueries: {
+    tablet: "min-width: 768px"
   }
 };
 

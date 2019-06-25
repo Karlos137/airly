@@ -8,7 +8,12 @@ const Wrapper = styled.div`
   margin: ${props => (props.compare ? "0px" : "20px 35px 0px")};
   padding-top: ${props => (props.compare ? "15px" : "0px")};
   position: relative;
-  width: ${props => (props.compare ? "135px" : "auto")};
+  max-width: ${props => (props.compare ? "135px" : "auto")};
+
+  @media (${props => props.theme.mediaQueries.tablet}) {
+    max-width: ${props => (props.compare ? "135px" : "308px")};
+    margin: 0px;
+  }
 `;
 
 export default Wrapper;

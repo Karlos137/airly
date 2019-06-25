@@ -13,6 +13,7 @@ import CityName from "./CityName";
 import CityCountry from "./CityCountry";
 import AqiItems from "./AqiItems";
 import ContentWrapper from "./ContentWrapper";
+import AqiItemWrapper from "./AqiItemWrapper";
 
 import Header from "../../Header/index";
 import SelectInput from "../../SelectInput/index";
@@ -62,7 +63,10 @@ const MainPage = props => {
               <WeatherItem name="hum" />
             </WeatherItems>
             <Title>AIR POLLUTION</Title>
-            <AqiItem />
+            <AqiItemWrapper>
+              <AqiItem />
+              <div />
+            </AqiItemWrapper>
           </>
         )}
       </ContentWrapper>

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import axios from "axios";
 
 //styled components
 import Wrapper from "./Wrapper";
@@ -25,6 +27,28 @@ import AqiItem from "../../AqiItem/index";
 import DarkModeToggle from "../../DarkModeToggle/index";
 
 const MainPage = props => {
+  /*useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        "http://api.airvisual.com/v2/countries?key=vLkxx5tGKKJenCmyF"
+      );
+      const countries = response.data.data;
+
+      console.log(countries); 
+       for (const country of countries) {
+        console.log(country.country);
+        const response = await axios.get(
+          `http://api.airvisual.com/v2/states?country=${
+            country.country
+          }&key=vLkxx5tGKKJenCmyF`
+        );
+        const states = response.data.data;
+        console.log(states);
+      }
+    };
+    fetchData();
+  }, []);*/
+
   return (
     <Wrapper>
       <ContentWrapper>

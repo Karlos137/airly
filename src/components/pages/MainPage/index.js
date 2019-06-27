@@ -72,7 +72,7 @@ const MainPage = props => {
                 <AqiItemWrapper>
                   <AqiItem />
                   <div />
-                  <NavLink to="/compare">COMPARE</NavLink>
+                  <NavLink to="/compare-aqi">COMPARE</NavLink>
                 </AqiItemWrapper>
               </div>
             </Content>

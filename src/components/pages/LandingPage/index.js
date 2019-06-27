@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
+
+import { Redirect } from "react-router-dom";
 
 import DarkModeToggle from "../../DarkModeToggle/index";
 
@@ -16,7 +18,17 @@ import ContentWrapper from "./ContentWrapper";
 
 const LandingPage = () => {
   const [darkTheme] = useContext(ThemeContext);
+  const [redirect, setRedirect] = useState(false);
 
+  const handleRedirect = () => {
+    setRedirect(true);
+  };
+
+  const renderRedirect = () => {
+    if (redirect) {
+      return <Redirect to="/weather-aqi" />;
+    }
+  };
   return (
     <>
       <ContentWrapper>
@@ -28,7 +40,8 @@ const LandingPage = () => {
         <Paragraph fontSize={"18px"}>
           Air quality index comparasion between selected cities.
         </Paragraph>
-        <Button>START</Button>
+        <Button onClick={handleRedirect}>START</Button>
+        {renderRedirect()}
       </ContentWrapper>
       <DarkModeToggle />
     </>

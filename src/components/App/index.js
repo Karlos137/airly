@@ -20,9 +20,9 @@ const App = () => {
         <GlobalStyle />
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/home" component={MainPage} />
+          <Route path="/weather-aqi" component={MainPage} />
           <Route
-            path="/compare"
+            path="/compare-aqi"
             render={props => <MainPage {...props} tab={"compare"} />}
           />
         </Switch>

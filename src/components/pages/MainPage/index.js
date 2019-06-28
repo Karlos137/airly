@@ -55,6 +55,10 @@ const MainPage = props => {
           if (state.state === "South Australia") {
             state.state = "SouthAustralia";
           }
+
+          if (state.state === "Federation of B&H") {
+            state.state = "Federation of B H";
+          }
           result[countryCounter].states.push({
             state: state.state,
             cities: []

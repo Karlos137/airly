@@ -35,7 +35,8 @@ const MainPage = props => {
       const delay = t => new Promise(resolve => setTimeout(resolve, t));
 
       const response = await axios.get(
-        "https://api.airvisual.com/v2/countries?key=vLkxx5tGKKJenCmyF"
+        //"https://api.airvisual.com/v2/countries?key=vLkxx5tGKKJenCmyF"
+        "https://api.airvisual.com/v2/countries?key=928ee30f-04de-41c2-95a2-364c5fe4c140"
       );
       const countries = response.data.data;
 
@@ -45,7 +46,7 @@ const MainPage = props => {
         const response = await axios.get(
           `https://api.airvisual.com/v2/states?country=${
             country.country
-          }&key=vLkxx5tGKKJenCmyF`
+          }&key=928ee30f-04de-41c2-95a2-364c5fe4c140`
         );
         await delay(10000);
         const states = response.data.data;
@@ -63,23 +64,31 @@ const MainPage = props => {
             state: state.state,
             cities: []
           });
-
-          console.log(result);
-          const response = await axios.get(
-            `https://api.airvisual.com/v2/cities?state=${state.state}&country=${
-              country.country
-            }&key=vLkxx5tGKKJenCmyF`
-          );
-          await delay(10000);
-          const cities = response.data.data;
-          for (const city of cities) {
-            result[countryCounter].states[stateCounter].cities.push(city.city);
+          try {
+            console.log(result);
+            const response = await axios.get(
+              `https://api.airvisual.com/v2/cities?state=${
+                state.state
+              }&country=${
+                country.country
+              }&key=928ee30f-04de-41c2-95a2-364c5fe4c140`
+            );
+            await delay(10000);
+            const cities = response.data.data;
+            for (const city of cities) {
+              result[countryCounter].states[stateCounter].cities.push(
+                city.city
+              );
+            }
+            stateCounter += 1;
+          } catch (error) {
+            console.error(error);
           }
-          stateCounter += 1;
         }
 
-        console.log(JSON.stringify(result));
         countryCounter += 1;
+        console.log(JSON.stringify(result));
+        console.log("Countries: " + countryCounter);
       }
     };
     fetchData();

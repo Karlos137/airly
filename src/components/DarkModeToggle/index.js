@@ -22,7 +22,6 @@ const DarkModeToggle = props => {
       setIsChecked(true);
     }
   };
-  console.log(props.for);
   return (
     <ToggleWrapper for={props.for}>
       <Text>DARK MODE</Text>

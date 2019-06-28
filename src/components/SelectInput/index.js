@@ -18,7 +18,6 @@ const SelectInput = props => {
   const handleClick = () => {
     setOptionList(!optionListOpen);
   };
-  console.log(props.marginTop);
   return (
     <Wrapper margin={props.marginTop}>
       <StyledSelectInput placeholder="Select city" onChange={handleChange} />

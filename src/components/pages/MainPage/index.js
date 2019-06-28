@@ -27,27 +27,59 @@ import AqiItem from "../../AqiItem/index";
 import DarkModeToggle from "../../DarkModeToggle/index";
 
 const MainPage = props => {
-  /*useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
+      const result = [];
+      let countryCounter = 0;
+
+      const delay = t => new Promise(resolve => setTimeout(resolve, t));
+
       const response = await axios.get(
-        "http://api.airvisual.com/v2/countries?key=vLkxx5tGKKJenCmyF"
+        "https://api.airvisual.com/v2/countries?key=vLkxx5tGKKJenCmyF"
       );
       const countries = response.data.data;
 
-      console.log(countries); 
-       for (const country of countries) {
-        console.log(country.country);
+      console.log(countries);
+      for (const country of countries) {
+        result.push({ country: country.country, states: [] });
         const response = await axios.get(
-          `http://api.airvisual.com/v2/states?country=${
+          `https://api.airvisual.com/v2/states?country=${
             country.country
           }&key=vLkxx5tGKKJenCmyF`
         );
+        await delay(10000);
         const states = response.data.data;
-        console.log(states);
+
+        let stateCounter = 0;
+        for (const state of states) {
+          if (state.state === "South Australia") {
+            state.state = "SouthAustralia";
+          }
+          result[countryCounter].states.push({
+            state: state.state,
+            cities: []
+          });
+
+          console.log(result);
+          const response = await axios.get(
+            `https://api.airvisual.com/v2/cities?state=${state.state}&country=${
+              country.country
+            }&key=vLkxx5tGKKJenCmyF`
+          );
+          await delay(10000);
+          const cities = response.data.data;
+          for (const city of cities) {
+            result[countryCounter].states[stateCounter].cities.push(city.city);
+          }
+          stateCounter += 1;
+        }
+
+        console.log(JSON.stringify(result));
+        countryCounter += 1;
       }
     };
     fetchData();
-  }, []);*/
+  }, []);
 
   return (
     <Wrapper>

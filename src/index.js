@@ -4,12 +4,15 @@ import App from "./components/App/index";
 import * as serviceWorker from "./serviceWorker";
 
 import { ThemeProvider } from "./context/ThemeContext";
+import { GlobalProvider } from "./context/GlobalContext";
 
 // const [darkMode] = useContext(ThemeContext);
 
 ReactDOM.render(
   <ThemeProvider>
-    <App />
+    <GlobalProvider>
+      <App />
+    </GlobalProvider>
   </ThemeProvider>,
   document.getElementById("root")
 );

@@ -27,72 +27,73 @@ import AqiItem from "../../AqiItem/index";
 import DarkModeToggle from "../../DarkModeToggle/index";
 
 const MainPage = props => {
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = [];
-      let countryCounter = 0;
+  // console.log(CitysData);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = [];
+  //     let countryCounter = 0;
 
-      const delay = t => new Promise(resolve => setTimeout(resolve, t));
+  //     const delay = t => new Promise(resolve => setTimeout(resolve, t));
 
-      const response = await axios.get(
-        //"https://api.airvisual.com/v2/countries?key=vLkxx5tGKKJenCmyF"
-        "https://api.airvisual.com/v2/countries?key=928ee30f-04de-41c2-95a2-364c5fe4c140"
-      );
-      const countries = response.data.data;
+  //     const response = await axios.get(
+  //       //"https://api.airvisual.com/v2/countries?key=vLkxx5tGKKJenCmyF"
+  //       "https://api.airvisual.com/v2/countries?key=928ee30f-04de-41c2-95a2-364c5fe4c140"
+  //     );
+  //     const countries = response.data.data;
 
-      console.log(countries);
-      for (const country of countries) {
-        result.push({ country: country.country, states: [] });
-        const response = await axios.get(
-          `https://api.airvisual.com/v2/states?country=${
-            country.country
-          }&key=928ee30f-04de-41c2-95a2-364c5fe4c140`
-        );
-        await delay(10000);
-        const states = response.data.data;
+  //     console.log(countries);
+  //     for (const country of countries) {
+  //       result.push({ country: country.country, states: [] });
+  //       const response = await axios.get(
+  //         `https://api.airvisual.com/v2/states?country=${
+  //           country.country
+  //         }&key=928ee30f-04de-41c2-95a2-364c5fe4c140`
+  //       );
+  //       await delay(10000);
+  //       const states = response.data.data;
 
-        let stateCounter = 0;
-        for (const state of states) {
-          if (state.state === "South Australia") {
-            state.state = "SouthAustralia";
-          }
+  //       let stateCounter = 0;
+  //       for (const state of states) {
+  //         if (state.state === "South Australia") {
+  //           state.state = "SouthAustralia";
+  //         }
 
-          if (state.state === "Federation of B&H") {
-            state.state = "Federation of B H";
-          }
-          result[countryCounter].states.push({
-            state: state.state,
-            cities: []
-          });
-          try {
-            console.log(result);
-            const response = await axios.get(
-              `https://api.airvisual.com/v2/cities?state=${
-                state.state
-              }&country=${
-                country.country
-              }&key=928ee30f-04de-41c2-95a2-364c5fe4c140`
-            );
-            await delay(10000);
-            const cities = response.data.data;
-            for (const city of cities) {
-              result[countryCounter].states[stateCounter].cities.push(
-                city.city
-              );
-            }
-            stateCounter += 1;
-          } catch (error) {
-            console.error(error);
-          }
-        }
+  //         if (state.state === "Federation of B&H") {
+  //           state.state = "Federation of B H";
+  //         }
+  //         result[countryCounter].states.push({
+  //           state: state.state,
+  //           cities: []
+  //         });
+  //         try {
+  //           console.log(result);
+  //           const response = await axios.get(
+  //             `https://api.airvisual.com/v2/cities?state=${
+  //               state.state
+  //             }&country=${
+  //               country.country
+  //             }&key=928ee30f-04de-41c2-95a2-364c5fe4c140`
+  //           );
+  //           await delay(10000);
+  //           const cities = response.data.data;
+  //           for (const city of cities) {
+  //             result[countryCounter].states[stateCounter].cities.push(
+  //               city.city
+  //             );
+  //           }
+  //           stateCounter += 1;
+  //         } catch (error) {
+  //           console.error(error);
+  //         }
+  //       }
 
-        countryCounter += 1;
-        console.log(JSON.stringify(result));
-        console.log("Countries: " + countryCounter);
-      }
-    };
-    fetchData();
-  }, []);
+  //       countryCounter += 1;
+  //       console.log(JSON.stringify(result));
+  //       console.log("Countries: " + countryCounter);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <Wrapper>

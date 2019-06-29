@@ -14,6 +14,8 @@ const StyledOptionList = styled.div`
   display: ${props => (props.isOpen ? "inline-block" : "none")};
   position: relative;
   z-index: 2;
+  height: 200px;
+  overflow-y: scroll;
 
   @media (${props => props.theme.mediaQueries.desktop}) {
     width: 350px;

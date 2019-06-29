@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import axios from "axios";
 
-//styled components
+//styled components imports
 import Wrapper from "./Wrapper";
 import Title from "./Title";
 import Content from "./Content";

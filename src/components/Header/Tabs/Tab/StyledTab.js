@@ -11,6 +11,8 @@ const StyledTab = styled(NavLink)`
         props.theme.colors.backgroundColor4};
   text-align: center;
   line-height: 45px;
+  border-radius: ${props =>
+    props.position === "left" ? "3px 0px 0px 0px" : "0px 3px 0px 0px"};
 `;
 
 export default StyledTab;

@@ -12,16 +12,16 @@ const SelectInput = props => {
   const handleChange = e => {
     if (e.target.value !== "") {
       setOptionList(true);
-      setInputValue(e.target.value);
     } else {
       setOptionList(false);
     }
+    setInputValue(e.target.value);
   };
 
   const handleClick = () => {
     setOptionList(!optionListOpen);
   };
-
+  console.log(inputValue);
   return (
     <Wrapper margin={props.marginTop}>
       <StyledSelectInput

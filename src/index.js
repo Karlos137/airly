@@ -5,15 +5,19 @@ import * as serviceWorker from "./serviceWorker";
 
 import { ThemeProvider } from "./context/ThemeContext";
 import { GlobalProvider } from "./context/GlobalContext";
+import { OptionProvider } from "./context/OptionContext";
 
 // const [darkMode] = useContext(ThemeContext);
 
 ReactDOM.render(
-  <ThemeProvider>
-    <GlobalProvider>
-      <App />
-    </GlobalProvider>
-  </ThemeProvider>,
+  <OptionProvider>
+    <ThemeProvider>
+      <GlobalProvider>
+        <App />
+      </GlobalProvider>
+    </ThemeProvider>
+  </OptionProvider>,
+
   document.getElementById("root")
 );
 

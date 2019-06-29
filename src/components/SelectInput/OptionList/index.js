@@ -5,15 +5,21 @@ import Option from "./Option";
 
 //context imports
 import { GlobalContext } from "../../../context/GlobalContext";
+import { OptionContext } from "../../../context/OptionContext";
 
 const OptionList = props => {
   const [cities] = useContext(GlobalContext);
+  const [, setSelectedOption] = useContext(OptionContext);
 
   const handleClick = e => {
     props.setOptionList(false);
     props.setInputText(
       cities[e.target.id].city + ", " + cities[e.target.id].country
     );
+    setSelectedOption({
+      city: cities[e.target.id].city,
+      country: cities[e.target.id].country
+    });
   };
 
   let options = cities

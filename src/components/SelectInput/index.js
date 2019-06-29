@@ -17,14 +17,25 @@ const SelectInput = props => {
       setOptionList(false);
     }
   };
+
   const handleClick = () => {
     setOptionList(!optionListOpen);
   };
+
   return (
     <Wrapper margin={props.marginTop}>
-      <StyledSelectInput placeholder="Select city" onChange={handleChange} />
+      <StyledSelectInput
+        placeholder="Select city"
+        onChange={handleChange}
+        value={inputValue}
+      />
       <ArrowIcon size="32" onClick={handleClick} />
-      <OptionList isOpen={optionListOpen} inputText={inputValue} />
+      <OptionList
+        isOpen={optionListOpen}
+        setOptionList={setOptionList}
+        inputText={inputValue}
+        setInputText={setInputValue}
+      />
     </Wrapper>
   );
 };

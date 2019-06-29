@@ -9,13 +9,21 @@ import { GlobalContext } from "../../../context/GlobalContext";
 const OptionList = props => {
   const [cities] = useContext(GlobalContext);
 
+  const handleClick = e => {
+    props.setOptionList(false);
+    props.setInputText(
+      cities[e.target.id].city + ", " + cities[e.target.id].country
+    );
+  };
+
   let options = cities
     .map((city, index) => (
-      <Option key={index}>{city.city + ", " + city.country}</Option>
+      <Option key={index} id={index} onClick={handleClick}>
+        {city.city + ", " + city.country}
+      </Option>
     ))
     .slice(0, 10);
 
-  console.log(props.inputText);
   let filteredOptions = props.inputText
     ? cities
         .filter(
@@ -24,7 +32,9 @@ const OptionList = props => {
             city.country.toLowerCase().includes(props.inputText.toLowerCase())
         )
         .map((city, index) => (
-          <Option key={index}>{city.city + ", " + city.country}</Option>
+          <Option key={index} id={index} onClick={handleClick}>
+            {city.city + ", " + city.country}
+          </Option>
         ))
         .slice(0, 10)
     : [];

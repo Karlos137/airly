@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { withRouter } from "react-router-dom";
 
 import Wrapper from "./Wrapper";
 import StyledSelectInput from "./StyledSelectInput";
@@ -21,7 +22,12 @@ const SelectInput = props => {
   const handleClick = () => {
     setOptionList(!optionListOpen);
   };
-  console.log(inputValue);
+
+  props.history.listen(() => {
+    setOptionList(false);
+    setInputValue("");
+  });
+
   return (
     <Wrapper margin={props.marginTop}>
       <StyledSelectInput
@@ -40,4 +46,4 @@ const SelectInput = props => {
   );
 };
 
-export default SelectInput;
+export default withRouter(SelectInput);

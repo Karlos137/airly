@@ -99,11 +99,11 @@ const MainPage = props => {
   //   fetchData();
   // }, []);
 
-  const [weather, , weather2] = useContext(WeatherContext);
-  const [selectedOption] = useContext(OptionContext);
+  const [weather] = useContext(WeatherContext);
+  const [selectedOption, setSelectedOption] = useContext(OptionContext);
 
   const renderWeatherTab = () => {
-    if (weather === null) {
+    if (weather.firstSelect === null) {
       return (
         <>
           <SelectInput />
@@ -111,7 +111,7 @@ const MainPage = props => {
       );
     } else {
       let aqiText = "";
-      if (weather.pollution.aqius <= 50) {
+      if (weather.firstSelect.pollution.aqius <= 50) {
         aqiText = "GOOD";
       } else if (weather.pollution.aqius <= 100) {
         aqiText = "MODERATE";
@@ -132,15 +132,27 @@ const MainPage = props => {
             <div>
               <Title>WEATHER</Title>
               <WeatherItems>
-                <WeatherItem name="temp" value={weather.weather.tp} />
-                <WeatherItem name="wind" value={weather.weather.ws} />
-                <WeatherItem name="hum" value={weather.weather.hu} />
+                <WeatherItem
+                  name="temp"
+                  value={weather.firstSelect.weather.tp}
+                />
+                <WeatherItem
+                  name="wind"
+                  value={weather.firstSelect.weather.ws}
+                />
+                <WeatherItem
+                  name="hum"
+                  value={weather.firstSelect.weather.hu}
+                />
               </WeatherItems>
             </div>
             <div>
               <Title>AIR POLLUTION</Title>
               <AqiItemWrapper>
-                <AqiItem value={weather.pollution.aqius} text={aqiText} />
+                <AqiItem
+                  value={weather.firstSelect.pollution.aqius}
+                  text={aqiText}
+                />
                 <div />
                 <NavLink to="/compare-aqi">COMPARE</NavLink>
               </AqiItemWrapper>
@@ -152,7 +164,7 @@ const MainPage = props => {
   };
 
   const renderCompareTab = () => {
-    if (weather === null || weather2 === null) {
+    if (weather.firstSelect === null || weather.secondSelect === null) {
       return (
         <>
           <SelectInput /> <SelectInput marginTop={"20px"} second />
@@ -161,28 +173,28 @@ const MainPage = props => {
     } else {
       let aqiText = "";
       let aqiText2 = "";
-      if (weather.pollution.aqius <= 50) {
+      if (weather.firstSelect.pollution.aqius <= 50) {
         aqiText = "GOOD";
-      } else if (weather.pollution.aqius <= 100) {
+      } else if (weather.firstSelect.pollution.aqius <= 100) {
         aqiText = "MODERATE";
-      } else if (weather.pollution.aqius <= 150) {
+      } else if (weather.firstSelect.pollution.aqius <= 150) {
         aqiText = "UNHEALTHY FOR SENSITIVE GROUPS";
-      } else if (weather.pollution.aqius <= 200) {
+      } else if (weather.firstSelect.pollution.aqius <= 200) {
         aqiText = "UNHEALTHY";
-      } else if (weather.pollution.aqius <= 300) {
+      } else if (weather.firstSelect.pollution.aqius <= 300) {
         aqiText = "VERY UNHEALTHY";
       } else {
         aqiText = "HAZARDOUS";
       }
-      if (weather2.pollution.aqius <= 50) {
+      if (weather.secondSelect.pollution.aqius <= 50) {
         aqiText2 = "GOOD";
-      } else if (weather2.pollution.aqius <= 100) {
+      } else if (weather.secondSelect.pollution.aqius <= 100) {
         aqiText2 = "MODERATE";
-      } else if (weather2.pollution.aqius <= 150) {
+      } else if (weather.secondSelect.pollution.aqius <= 150) {
         aqiText2 = "UNHEALTHY FOR SENSITIVE GROUPS";
-      } else if (weather2.pollution.aqius <= 200) {
+      } else if (weather.secondSelect.pollution.aqius <= 200) {
         aqiText2 = "UNHEALTHY";
-      } else if (weather2.pollution.aqius <= 300) {
+      } else if (weather.secondSelect.pollution.aqius <= 300) {
         aqiText2 = "VERY UNHEALTHY";
       } else {
         aqiText2 = "HAZARDOUS";
@@ -190,7 +202,10 @@ const MainPage = props => {
 
       const aqiDifference =
         100 -
-        Math.round((weather.pollution.aqius * 100) / weather2.pollution.aqius);
+        Math.round(
+          (weather.firstSelect.pollution.aqius * 100) /
+            weather.secondSelect.pollution.aqius
+        );
       return (
         <>
           <SelectInput /> <SelectInput marginTop={"20px"} second />
@@ -207,9 +222,17 @@ const MainPage = props => {
           </Cities>
           <Title compare>AIR POLLUTION</Title>
           <AqiItems>
-            <AqiItem compare value={weather.pollution.aqius} text={aqiText} />
+            <AqiItem
+              compare
+              value={weather.firstSelect.pollution.aqius}
+              text={aqiText}
+            />
             <VerticalLine height={"200px"} />
-            <AqiItem compare value={weather2.pollution.aqius} text={aqiText2} />
+            <AqiItem
+              compare
+              value={weather.secondSelect.pollution.aqius}
+              text={aqiText2}
+            />
           </AqiItems>
           <Text>
             {selectedOption.firstSelect.city} has AQ Index{" "}

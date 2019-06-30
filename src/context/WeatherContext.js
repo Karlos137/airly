@@ -3,13 +3,13 @@ import React, { useState, createContext } from "react";
 export const WeatherContext = createContext();
 
 export const WeatherProvider = props => {
-  const [weather, setWeather] = useState(null);
-  const [weather2, setWeather2] = useState(null);
+  const [weather, setWeather] = useState({
+    firstSelect: null,
+    secondSelect: null
+  });
 
   return (
-    <WeatherContext.Provider
-      value={[weather, setWeather, weather2, setWeather2]}
-    >
+    <WeatherContext.Provider value={[weather, setWeather]}>
       {props.children}
     </WeatherContext.Provider>
   );

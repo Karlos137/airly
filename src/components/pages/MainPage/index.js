@@ -108,6 +108,20 @@ const MainPage = props => {
         </>
       );
     } else {
+      let aqiText = "";
+      if (weather.pollution.aqius <= 50) {
+        aqiText = "GOOD";
+      } else if (weather.pollution.aqius <= 100) {
+        aqiText = "MODERATE";
+      } else if (weather.pollution.aqius <= 150) {
+        aqiText = "UNHEALTHY FOR SENSITIVE GROUPS";
+      } else if (weather.pollution.aqius <= 200) {
+        aqiText = "UNHEALTHY";
+      } else if (weather.pollution.aqius <= 300) {
+        aqiText = "VERY UNHEALTHY";
+      } else {
+        aqiText = "HAZARDOUS";
+      }
       return (
         <>
           <SelectInput />
@@ -124,7 +138,7 @@ const MainPage = props => {
             <div>
               <Title>AIR POLLUTION</Title>
               <AqiItemWrapper>
-                <AqiItem value={weather.pollution.aqius} />
+                <AqiItem value={weather.pollution.aqius} text={aqiText} />
                 <div />
                 <NavLink to="/compare-aqi">COMPARE</NavLink>
               </AqiItemWrapper>

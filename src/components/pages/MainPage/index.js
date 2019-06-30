@@ -2,9 +2,13 @@ import React, { useEffect, useContext } from "react";
 
 import axios from "axios";
 
+//SVG imports
+import { ReactComponent as Loading } from "../../../images/loading.svg";
+
 //context imports
 import { WeatherContext } from "../../../context/WeatherContext";
 import { OptionContext } from "../../../context/OptionContext";
+import { LoadingContext } from "../../../context/LoadingContext";
 
 //styled components imports
 import Wrapper from "./Wrapper";
@@ -22,6 +26,7 @@ import AqiItems from "./AqiItems";
 import ContentWrapper from "./ContentWrapper";
 import AqiItemWrapper from "./AqiItemWrapper";
 import NavLink from "./NavLink";
+import LoadingWrapper from "./LoadingWrapper";
 
 import Header from "../../Header/index";
 import SelectInput from "../../SelectInput/index";
@@ -100,13 +105,19 @@ const MainPage = props => {
   // }, []);
 
   const [weather] = useContext(WeatherContext);
-  const [selectedOption, setSelectedOption] = useContext(OptionContext);
+  const [selectedOption] = useContext(OptionContext);
+  const [loading] = useContext(LoadingContext);
 
   const renderWeatherTab = () => {
     if (weather.firstSelect === null) {
       return (
         <>
           <SelectInput />
+          {loading ? (
+            <LoadingWrapper>
+              <Loading />
+            </LoadingWrapper>
+          ) : null}
         </>
       );
     } else {

@@ -107,7 +107,7 @@ const MainPage = props => {
   const [weather] = useContext(WeatherContext);
   const [selectedOption] = useContext(OptionContext);
   const [loading] = useContext(LoadingContext);
-
+  console.log(weather);
   const renderWeatherTab = () => {
     if (weather.firstSelect === null) {
       return (

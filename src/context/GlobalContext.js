@@ -5,14 +5,17 @@ export const GlobalContext = createContext();
 
 export const GlobalProvider = props => {
   let cityList = [];
+  let id = 0;
   Cities.forEach(country => {
     country.states.forEach(state => {
       state.cities.forEach(city => {
         cityList.push({
+          id: id,
           city: city,
           state: state.state,
           country: country.country
         });
+        id++;
       });
     });
   });

@@ -33,7 +33,6 @@ const OptionList = props => {
 
   const handleClick = e => {
     props.setOptionList(false);
-    console.log(e.target.id);
     props.setInputText(
       cities[e.target.id].city + ", " + cities[e.target.id].country
     );
@@ -42,13 +41,11 @@ const OptionList = props => {
       state: cities[e.target.id].state,
       country: cities[e.target.id].country
     });
-    console.log(selectedOption);
-    console.log(props.inputText);
   };
 
   let options = cities
-    .map((city, index) => (
-      <Option key={index} id={index} onClick={handleClick}>
+    .map(city => (
+      <Option key={city.id} id={city.id} onClick={handleClick}>
         {city.city + ", " + city.country + ", " + city.state}
       </Option>
     ))
@@ -61,8 +58,8 @@ const OptionList = props => {
             city.city.toLowerCase().includes(props.inputText.toLowerCase()) ||
             city.country.toLowerCase().includes(props.inputText.toLowerCase())
         )
-        .map((city, index) => (
-          <Option key={index} id={index} onClick={handleClick}>
+        .map(city => (
+          <Option key={city.id} id={city.id} onClick={handleClick}>
             {city.city + ", " + city.country}
           </Option>
         ))

@@ -33,6 +33,7 @@ const OptionList = props => {
 
   const handleClick = e => {
     props.setOptionList(false);
+    console.log(e.target.id);
     props.setInputText(
       cities[e.target.id].city + ", " + cities[e.target.id].country
     );
@@ -41,6 +42,8 @@ const OptionList = props => {
       state: cities[e.target.id].state,
       country: cities[e.target.id].country
     });
+    console.log(selectedOption);
+    console.log(props.inputText);
   };
 
   let options = cities
@@ -65,7 +68,7 @@ const OptionList = props => {
         ))
         .slice(0, 10)
     : [];
-  console.log(filteredOptions);
+
   return (
     <StyledOptionList isOpen={props.isOpen}>
       {props.inputText ? (

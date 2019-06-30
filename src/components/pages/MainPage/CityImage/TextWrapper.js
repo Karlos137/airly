@@ -4,7 +4,7 @@ const TextWrapper = styled.div`
   position: absolute;
   text-align: center;
   bottom: calc(50% - 30px);
-  left: calc(50% - 56px);
+  width: 100%;
 `;
 
 export default TextWrapper;

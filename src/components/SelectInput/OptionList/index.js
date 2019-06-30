@@ -62,10 +62,18 @@ const OptionList = props => {
         ))
         .slice(0, 10)
     : [];
-
+  console.log(filteredOptions);
   return (
     <StyledOptionList isOpen={props.isOpen}>
-      {props.inputText ? filteredOptions : options}
+      {props.inputText ? (
+        filteredOptions.length ? (
+          filteredOptions
+        ) : (
+          <Option noHover>No results found</Option>
+        )
+      ) : (
+        options
+      )}
     </StyledOptionList>
   );
 };

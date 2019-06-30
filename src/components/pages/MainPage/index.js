@@ -4,6 +4,7 @@ import axios from "axios";
 
 //context imports
 import { WeatherContext } from "../../../context/WeatherContext";
+import { OptionContext } from "../../../context/OptionContext";
 
 //styled components imports
 import Wrapper from "./Wrapper";
@@ -98,7 +99,8 @@ const MainPage = props => {
   //   fetchData();
   // }, []);
 
-  const [weather] = useContext(WeatherContext);
+  const [weather, , weather2] = useContext(WeatherContext);
+  const [selectedOption] = useContext(OptionContext);
 
   const renderWeatherTab = () => {
     if (weather === null) {
@@ -149,38 +151,84 @@ const MainPage = props => {
     }
   };
 
+  const renderCompareTab = () => {
+    if (weather === null || weather2 === null) {
+      return (
+        <>
+          <SelectInput /> <SelectInput marginTop={"20px"} second />
+        </>
+      );
+    } else {
+      let aqiText = "";
+      let aqiText2 = "";
+      if (weather.pollution.aqius <= 50) {
+        aqiText = "GOOD";
+      } else if (weather.pollution.aqius <= 100) {
+        aqiText = "MODERATE";
+      } else if (weather.pollution.aqius <= 150) {
+        aqiText = "UNHEALTHY FOR SENSITIVE GROUPS";
+      } else if (weather.pollution.aqius <= 200) {
+        aqiText = "UNHEALTHY";
+      } else if (weather.pollution.aqius <= 300) {
+        aqiText = "VERY UNHEALTHY";
+      } else {
+        aqiText = "HAZARDOUS";
+      }
+      if (weather2.pollution.aqius <= 50) {
+        aqiText2 = "GOOD";
+      } else if (weather2.pollution.aqius <= 100) {
+        aqiText2 = "MODERATE";
+      } else if (weather2.pollution.aqius <= 150) {
+        aqiText2 = "UNHEALTHY FOR SENSITIVE GROUPS";
+      } else if (weather2.pollution.aqius <= 200) {
+        aqiText2 = "UNHEALTHY";
+      } else if (weather2.pollution.aqius <= 300) {
+        aqiText2 = "VERY UNHEALTHY";
+      } else {
+        aqiText2 = "HAZARDOUS";
+      }
+
+      const aqiDifference =
+        100 -
+        Math.round((weather.pollution.aqius * 100) / weather2.pollution.aqius);
+      return (
+        <>
+          <SelectInput /> <SelectInput marginTop={"20px"} second />
+          <Cities>
+            <City>
+              <CityName>{selectedOption.firstSelect.city}</CityName>
+              <CityCountry>{selectedOption.firstSelect.country}</CityCountry>
+            </City>
+            <VerticalLine height={"62px"} />
+            <City>
+              <CityName>{selectedOption.secondSelect.city}</CityName>
+              <CityCountry>{selectedOption.secondSelect.country}</CityCountry>
+            </City>
+          </Cities>
+          <Title compare>AIR POLLUTION</Title>
+          <AqiItems>
+            <AqiItem compare value={weather.pollution.aqius} text={aqiText} />
+            <VerticalLine height={"200px"} />
+            <AqiItem compare value={weather2.pollution.aqius} text={aqiText2} />
+          </AqiItems>
+          <Text>
+            {selectedOption.firstSelect.city} has AQ Index{" "}
+            <HighlightedText difference={aqiDifference > 0}>
+              {Math.abs(aqiDifference)}%{" "}
+              {aqiDifference > 0 ? "lower" : "higher"}{" "}
+            </HighlightedText>
+            than {selectedOption.secondSelect.city}.
+          </Text>
+        </>
+      );
+    }
+  };
+
   return (
     <Wrapper>
       <ContentWrapper>
         <Header />
-        {props.tab === "compare" ? (
-          <>
-            <SelectInput /> <SelectInput marginTop={"20px"} />
-            <Cities>
-              <City>
-                <CityName>Prague</CityName>
-                <CityCountry>Czech Republic</CityCountry>
-              </City>
-              <VerticalLine height={"62px"} />
-              <City>
-                <CityName>Brno</CityName>
-                <CityCountry>Czech Republic</CityCountry>
-              </City>
-            </Cities>
-            <Title compare>AIR POLLUTION</Title>
-            <AqiItems>
-              <AqiItem compare />
-              <VerticalLine height={"200px"} />
-              <AqiItem compare />
-            </AqiItems>
-            <Text>
-              Prague has AQ Index <HighlightedText>20% higher</HighlightedText>{" "}
-              than Brno.
-            </Text>
-          </>
-        ) : (
-          renderWeatherTab()
-        )}
+        {props.tab === "compare" ? renderCompareTab() : renderWeatherTab()}
       </ContentWrapper>
       <DarkModeToggle for="mobile" />
     </Wrapper>

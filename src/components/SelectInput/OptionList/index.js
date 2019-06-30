@@ -14,20 +14,36 @@ import { PortableWifiOff } from "styled-icons/material";
 const OptionList = props => {
   const [cities] = useContext(GlobalContext);
   const [selectedOption, setSelectedOption] = useContext(OptionContext);
-  const [, setWeather] = useContext(WeatherContext);
+  const [, setWeather, , setWeather2] = useContext(WeatherContext);
 
   useEffect(() => {
     const fetchWeather = async () => {
-      const response = await axios.get(
-        `https://api.airvisual.com/v2/city?city=${selectedOption.city}&state=${
-          selectedOption.state
-        }&country=${selectedOption.country}&key=vLkxx5tGKKJenCmyF`
-      );
-      const weatherData = response.data.data.current;
-
-      setWeather(weatherData);
+      if (props.second && props.inputText !== "") {
+        const response = await axios.get(
+          `https://api.airvisual.com/v2/city?city=${
+            selectedOption.secondSelect.city
+          }&state=${selectedOption.secondSelect.state}&country=${
+            selectedOption.secondSelect.country
+          }&key=vLkxx5tGKKJenCmyF`
+        );
+        const weatherData = response.data.data.current;
+        setWeather2(weatherData);
+      } else {
+        const response = await axios.get(
+          `https://api.airvisual.com/v2/city?city=${
+            selectedOption.firstSelect.city
+          }&state=${selectedOption.firstSelect.state}&country=${
+            selectedOption.firstSelect.country
+          }&key=vLkxx5tGKKJenCmyF`
+        );
+        const weatherData = response.data.data.current;
+        setWeather(weatherData);
+      }
     };
-    if (selectedOption !== null) {
+    if (
+      selectedOption.firstSelect !== null ||
+      selectedOption.secondSelect !== null
+    ) {
       fetchWeather();
     }
   }, [selectedOption, setWeather]);
@@ -38,11 +54,25 @@ const OptionList = props => {
     props.setInputText(
       cities[e.target.id].city + ", " + cities[e.target.id].country
     );
-    setSelectedOption({
-      city: cities[e.target.id].city,
-      state: cities[e.target.id].state,
-      country: cities[e.target.id].country
-    });
+    if (props.second) {
+      setSelectedOption({
+        ...selectedOption,
+        secondSelect: {
+          city: cities[e.target.id].city,
+          state: cities[e.target.id].state,
+          country: cities[e.target.id].country
+        }
+      });
+    } else {
+      setSelectedOption({
+        ...selectedOption,
+        firstSelect: {
+          city: cities[e.target.id].city,
+          state: cities[e.target.id].state,
+          country: cities[e.target.id].country
+        }
+      });
+    }
   };
 
   let options = cities.map(city => (
@@ -50,7 +80,6 @@ const OptionList = props => {
       {city.city + ", " + city.country + ", " + city.state}
     </Option>
   ));
-
   let filteredOptions = props.inputText
     ? cities
         .filter(

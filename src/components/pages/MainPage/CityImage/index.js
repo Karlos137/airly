@@ -23,8 +23,8 @@ const CityImage = props => {
         </TextWrapper>
       ) : (
         <TextWrapper>
-          <ImageTitle>{selectedOption.city}</ImageTitle>
-          <ImageText>{selectedOption.country}</ImageText>
+          <ImageTitle>{selectedOption.firstSelect.city}</ImageTitle>
+          <ImageText>{selectedOption.firstSelect.country}</ImageText>
         </TextWrapper>
       )}
     </ImageWrapper>

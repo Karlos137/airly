@@ -11,8 +11,8 @@ const AqiItem = props => {
     <>
       {props.compare ? (
         <Wrapper compare>
-          <Num compare>42</Num>
-          <Text compare>GOOD</Text>
+          <Num compare>{props.value}</Num>
+          <Text compare>{props.text}</Text>
           <Title compare>AIR QUALITY INDEX</Title>
         </Wrapper>
       ) : (

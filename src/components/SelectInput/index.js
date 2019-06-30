@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 
 import Wrapper from "./Wrapper";
@@ -45,6 +45,7 @@ const SelectInput = props => {
         fullList={fullOptionListOpen}
         inputText={inputValue}
         setInputText={setInputValue}
+        second={props.second}
       />
     </Wrapper>
   );

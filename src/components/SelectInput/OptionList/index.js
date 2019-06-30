@@ -18,7 +18,9 @@ const OptionList = props => {
   useEffect(() => {
     const fetchWeather = async () => {
       const response = await axios.get(
-        "https://api.airvisual.com/v2/city?city=Los Angeles&state=California&country=USA&key=vLkxx5tGKKJenCmyF"
+        `https://api.airvisual.com/v2/city?city=${selectedOption.city}&state=${
+          selectedOption.state
+        }&country=${selectedOption.country}&key=vLkxx5tGKKJenCmyF`
       );
       const weatherData = response.data.data.current;
 
@@ -36,6 +38,7 @@ const OptionList = props => {
     );
     setSelectedOption({
       city: cities[e.target.id].city,
+      state: cities[e.target.id].state,
       country: cities[e.target.id].country
     });
   };
@@ -43,7 +46,7 @@ const OptionList = props => {
   let options = cities
     .map((city, index) => (
       <Option key={index} id={index} onClick={handleClick}>
-        {city.city + ", " + city.country}
+        {city.city + ", " + city.country + ", " + city.state}
       </Option>
     ))
     .slice(0, 10);

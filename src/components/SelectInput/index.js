@@ -8,6 +8,7 @@ import OptionList from "./OptionList/index";
 
 const SelectInput = props => {
   const [optionListOpen, setOptionList] = useState(false);
+  const [fullOptionListOpen, setFullOptionList] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = e => {
@@ -20,11 +21,12 @@ const SelectInput = props => {
   };
 
   const handleClick = () => {
-    setOptionList(!optionListOpen);
+    setFullOptionList(!fullOptionListOpen);
   };
 
   props.history.listen(() => {
     setOptionList(false);
+    setFullOptionList(false);
     setInputValue("");
   });
 
@@ -37,8 +39,10 @@ const SelectInput = props => {
       />
       <ArrowIcon size="32" onClick={handleClick} />
       <OptionList
-        isOpen={optionListOpen}
+        isOpen={optionListOpen || fullOptionListOpen}
         setOptionList={setOptionList}
+        setFullOptionList={setFullOptionList}
+        fullList={fullOptionListOpen}
         inputText={inputValue}
         setInputText={setInputValue}
       />

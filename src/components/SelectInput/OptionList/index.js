@@ -9,6 +9,7 @@ import Option from "./Option";
 import { GlobalContext } from "../../../context/GlobalContext";
 import { OptionContext } from "../../../context/OptionContext";
 import { WeatherContext } from "../../../context/WeatherContext";
+import { PortableWifiOff } from "styled-icons/material";
 
 const OptionList = props => {
   const [cities] = useContext(GlobalContext);
@@ -33,6 +34,7 @@ const OptionList = props => {
 
   const handleClick = e => {
     props.setOptionList(false);
+    props.setFullOptionList(false);
     props.setInputText(
       cities[e.target.id].city + ", " + cities[e.target.id].country
     );
@@ -43,13 +45,11 @@ const OptionList = props => {
     });
   };
 
-  let options = cities
-    .map(city => (
-      <Option key={city.id} id={city.id} onClick={handleClick}>
-        {city.city + ", " + city.country + ", " + city.state}
-      </Option>
-    ))
-    .slice(0, 10);
+  let options = cities.map(city => (
+    <Option key={city.id} id={city.id} onClick={handleClick}>
+      {city.city + ", " + city.country + ", " + city.state}
+    </Option>
+  ));
 
   let filteredOptions = props.inputText
     ? cities
@@ -63,16 +63,19 @@ const OptionList = props => {
             {city.city + ", " + city.country}
           </Option>
         ))
-        .slice(0, 10)
     : [];
 
   return (
     <StyledOptionList isOpen={props.isOpen}>
       {props.inputText ? (
-        filteredOptions.length ? (
-          filteredOptions
+        !props.fullList ? (
+          filteredOptions.length ? (
+            filteredOptions
+          ) : (
+            <Option noHover>No results found</Option>
+          )
         ) : (
-          <Option noHover>No results found</Option>
+          options
         )
       ) : (
         options

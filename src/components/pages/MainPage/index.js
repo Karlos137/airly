@@ -179,6 +179,11 @@ const MainPage = props => {
       return (
         <>
           <SelectInput /> <SelectInput marginTop={"20px"} second />
+          {loading ? (
+            <LoadingWrapper>
+              <Loading />
+            </LoadingWrapper>
+          ) : null}
         </>
       );
     } else {

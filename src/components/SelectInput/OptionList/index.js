@@ -9,16 +9,22 @@ import Option from "./Option";
 import { GlobalContext } from "../../../context/GlobalContext";
 import { OptionContext } from "../../../context/OptionContext";
 import { WeatherContext } from "../../../context/WeatherContext";
+import { LoadingContext } from "../../../context/LoadingContext";
 import { PortableWifiOff } from "styled-icons/material";
 
 const OptionList = props => {
   const [cities] = useContext(GlobalContext);
   const [selectedOption, setSelectedOption] = useContext(OptionContext);
   const [, setWeather, , setWeather2] = useContext(WeatherContext);
+  const [, setLoading] = useContext(LoadingContext);
 
   useEffect(() => {
+    console.log("USE EFFECT");
+
     const fetchWeather = async () => {
       if (props.second && props.inputText !== "") {
+        setWeather(null);
+        setLoading(true);
         const response = await axios.get(
           `https://api.airvisual.com/v2/city?city=${
             selectedOption.secondSelect.city
@@ -27,8 +33,11 @@ const OptionList = props => {
           }&key=vLkxx5tGKKJenCmyF`
         );
         const weatherData = response.data.data.current;
+        setLoading(false);
         setWeather2(weatherData);
       } else {
+        setWeather(null);
+        setLoading(true);
         const response = await axios.get(
           `https://api.airvisual.com/v2/city?city=${
             selectedOption.firstSelect.city
@@ -37,6 +46,7 @@ const OptionList = props => {
           }&key=vLkxx5tGKKJenCmyF`
         );
         const weatherData = response.data.data.current;
+        setLoading(false);
         setWeather(weatherData);
       }
     };

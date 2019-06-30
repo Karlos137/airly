@@ -8,19 +8,22 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { GlobalProvider } from "./context/GlobalContext";
 import { OptionProvider } from "./context/OptionContext";
 import { WeatherProvider } from "./context/WeatherContext";
+import { LoadingProvider } from "./context/LoadingContext";
 
 // const [darkMode] = useContext(ThemeContext);
 
 ReactDOM.render(
-  <WeatherProvider>
-    <OptionProvider>
-      <ThemeProvider>
-        <GlobalProvider>
-          <App />
-        </GlobalProvider>
-      </ThemeProvider>
-    </OptionProvider>
-  </WeatherProvider>,
+  <LoadingProvider>
+    <WeatherProvider>
+      <OptionProvider>
+        <ThemeProvider>
+          <GlobalProvider>
+            <App />
+          </GlobalProvider>
+        </ThemeProvider>
+      </OptionProvider>
+    </WeatherProvider>
+  </LoadingProvider>,
 
   document.getElementById("root")
 );

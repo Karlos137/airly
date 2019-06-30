@@ -7,7 +7,11 @@ const Option = styled.div`
 
   :hover {
     color: ${props =>
-      props.theme.colors.darkNeutralColor7 || props.theme.colors.neutralColor1};
+      props.noHover
+        ? props.theme.colors.darkNeutralColor3 ||
+          props.theme.colors.neutralColor3
+        : props.theme.colors.darkNeutralColor7 ||
+          props.theme.colors.neutralColor1};
   }
 `;
 

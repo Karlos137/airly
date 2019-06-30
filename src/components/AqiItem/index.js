@@ -17,7 +17,7 @@ const AqiItem = props => {
         </Wrapper>
       ) : (
         <Wrapper>
-          <Num>42</Num>
+          <Num>{props.value}</Num>
           <Text>GOOD</Text>
           <Title>AIR QUALITY INDEX</Title>
         </Wrapper>

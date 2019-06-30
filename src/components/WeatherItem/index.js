@@ -26,7 +26,7 @@ const WeatherItem = props => {
   return (
     <Wrapper>
       <IconWrapper>{icon}</IconWrapper>
-      <ItemText>32</ItemText>
+      <ItemText>{props.value}</ItemText>
       <Units>{units}</Units>
       <Name>{props.name}</Name>
     </Wrapper>

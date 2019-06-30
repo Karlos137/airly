@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+
+import axios from "axios";
 
 import StyledOptionList from "./StyledOptionList";
 import Option from "./Option";
@@ -6,10 +8,26 @@ import Option from "./Option";
 //context imports
 import { GlobalContext } from "../../../context/GlobalContext";
 import { OptionContext } from "../../../context/OptionContext";
+import { WeatherContext } from "../../../context/WeatherContext";
 
 const OptionList = props => {
   const [cities] = useContext(GlobalContext);
-  const [, setSelectedOption] = useContext(OptionContext);
+  const [selectedOption, setSelectedOption] = useContext(OptionContext);
+  const [, setWeather] = useContext(WeatherContext);
+
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const response = await axios.get(
+        "https://api.airvisual.com/v2/city?city=Los Angeles&state=California&country=USA&key=vLkxx5tGKKJenCmyF"
+      );
+      const weatherData = response.data.data.current;
+
+      setWeather(weatherData);
+    };
+    if (selectedOption !== null) {
+      fetchWeather();
+    }
+  }, [selectedOption, setWeather]);
 
   const handleClick = e => {
     props.setOptionList(false);

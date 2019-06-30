@@ -3,20 +3,24 @@ import ReactDOM from "react-dom";
 import App from "./components/App/index";
 import * as serviceWorker from "./serviceWorker";
 
+//context imports
 import { ThemeProvider } from "./context/ThemeContext";
 import { GlobalProvider } from "./context/GlobalContext";
 import { OptionProvider } from "./context/OptionContext";
+import { WeatherProvider } from "./context/WeatherContext";
 
 // const [darkMode] = useContext(ThemeContext);
 
 ReactDOM.render(
-  <OptionProvider>
-    <ThemeProvider>
-      <GlobalProvider>
-        <App />
-      </GlobalProvider>
-    </ThemeProvider>
-  </OptionProvider>,
+  <WeatherProvider>
+    <OptionProvider>
+      <ThemeProvider>
+        <GlobalProvider>
+          <App />
+        </GlobalProvider>
+      </ThemeProvider>
+    </OptionProvider>
+  </WeatherProvider>,
 
   document.getElementById("root")
 );

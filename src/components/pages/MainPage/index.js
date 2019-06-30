@@ -1,6 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 
 import axios from "axios";
+
+//context imports
+import { WeatherContext } from "../../../context/WeatherContext";
 
 //styled components imports
 import Wrapper from "./Wrapper";
@@ -95,6 +98,43 @@ const MainPage = props => {
   //   fetchData();
   // }, []);
 
+  const [weather] = useContext(WeatherContext);
+
+  const renderWeatherTab = () => {
+    if (weather === null) {
+      return (
+        <>
+          <SelectInput />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <SelectInput />
+          <CityImage src="https://hoodline.imgix.net/uploads/story/image/417236/..destination_photo_url..PRAG-sky.jpg.jpg?auto=format" />
+          <Content>
+            <div>
+              <Title>WEATHER</Title>
+              <WeatherItems>
+                <WeatherItem name="temp" value={weather.weather.tp} />
+                <WeatherItem name="wind" value={weather.weather.ws} />
+                <WeatherItem name="hum" value={weather.weather.hu} />
+              </WeatherItems>
+            </div>
+            <div>
+              <Title>AIR POLLUTION</Title>
+              <AqiItemWrapper>
+                <AqiItem value={weather.pollution.aqius} />
+                <div />
+                <NavLink to="/compare-aqi">COMPARE</NavLink>
+              </AqiItemWrapper>
+            </div>
+          </Content>
+        </>
+      );
+    }
+  };
+
   return (
     <Wrapper>
       <ContentWrapper>
@@ -125,28 +165,7 @@ const MainPage = props => {
             </Text>
           </>
         ) : (
-          <>
-            <SelectInput />
-            <CityImage src="https://hoodline.imgix.net/uploads/story/image/417236/..destination_photo_url..PRAG-sky.jpg.jpg?auto=format" />
-            <Content>
-              <div>
-                <Title>WEATHER</Title>
-                <WeatherItems>
-                  <WeatherItem name="temp" />
-                  <WeatherItem name="wind" />
-                  <WeatherItem name="hum" />
-                </WeatherItems>
-              </div>
-              <div>
-                <Title>AIR POLLUTION</Title>
-                <AqiItemWrapper>
-                  <AqiItem />
-                  <div />
-                  <NavLink to="/compare-aqi">COMPARE</NavLink>
-                </AqiItemWrapper>
-              </div>
-            </Content>
-          </>
+          renderWeatherTab()
         )}
       </ContentWrapper>
       <DarkModeToggle for="mobile" />

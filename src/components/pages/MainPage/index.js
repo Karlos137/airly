@@ -124,13 +124,13 @@ const MainPage = props => {
       let aqiText = "";
       if (weather.firstSelect.pollution.aqius <= 50) {
         aqiText = "GOOD";
-      } else if (weather.pollution.aqius <= 100) {
+      } else if (weather.firstSelect.pollution.aqius <= 100) {
         aqiText = "MODERATE";
-      } else if (weather.pollution.aqius <= 150) {
+      } else if (weather.firstSelect.pollution.aqius <= 150) {
         aqiText = "UNHEALTHY FOR SENSITIVE GROUPS";
-      } else if (weather.pollution.aqius <= 200) {
+      } else if (weather.firstSelect.pollution.aqius <= 200) {
         aqiText = "UNHEALTHY";
-      } else if (weather.pollution.aqius <= 300) {
+      } else if (weather.firstSelect.pollution.aqius <= 300) {
         aqiText = "VERY UNHEALTHY";
       } else {
         aqiText = "HAZARDOUS";

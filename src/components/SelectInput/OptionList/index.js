@@ -20,6 +20,8 @@ const OptionList = props => {
   useEffect(() => {
     console.log("USE EFFECT");
     console.log(weather);
+    console.log(selectedOption);
+
     const fetchWeather = async () => {
       if (props.second && props.inputText !== "") {
         setWeather({ firstSelect: null, secondSelect: null });
@@ -29,12 +31,13 @@ const OptionList = props => {
             selectedOption.secondSelect.city
           }&state=${selectedOption.secondSelect.state}&country=${
             selectedOption.secondSelect.country
-          }&key=vLkxx5tGKKJenCmyF`
+            // }&key=vLkxx5tGKKJenCmyF`
+          }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
         );
         const weatherData = response.data.data.current;
         setLoading(false);
         setWeather({ ...weather, secondSelect: weatherData });
-      } else {
+      } else if (props.inputText !== "") {
         setWeather({ firstSelect: null, secondSelect: null });
         setLoading(true);
         const response = await axios.get(
@@ -42,7 +45,8 @@ const OptionList = props => {
             selectedOption.firstSelect.city
           }&state=${selectedOption.firstSelect.state}&country=${
             selectedOption.firstSelect.country
-          }&key=vLkxx5tGKKJenCmyF`
+            //  }&key=vLkxx5tGKKJenCmyF`
+          }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
         );
         const weatherData = response.data.data.current;
         setLoading(false);

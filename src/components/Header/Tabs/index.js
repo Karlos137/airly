@@ -8,8 +8,9 @@ import Tab from "./Tab/index";
 
 const Tabs = props => {
   const [, setSelectedOption] = useContext(OptionContext);
-  const [, setWeather] = useContext(OptionContext);
+  const [, setWeather] = useContext(WeatherContext);
   const handleClick = () => {
+    console.log("dd");
     setSelectedOption({ firstSelect: null, secondSelect: null });
     setWeather({ firstSelect: null, secondSelect: null });
   };

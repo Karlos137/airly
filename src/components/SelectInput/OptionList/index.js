@@ -21,6 +21,13 @@ const OptionList = props => {
     console.log("USE EFFECT");
     console.log(weather);
     console.log(selectedOption);
+    if (selectedOption.firstSelect !== null && !props.second) {
+      props.setInputText(
+        selectedOption.firstSelect.city +
+          ", " +
+          selectedOption.firstSelect.country
+      );
+    }
 
     const fetchWeather = async () => {
       if (props.second && props.inputText !== "") {
@@ -90,7 +97,7 @@ const OptionList = props => {
 
   let options = cities.map(city => (
     <Option key={city.id} id={city.id} onClick={handleClick}>
-      {city.city + ", " + city.country + ", " + city.state}
+      {city.city + ", " + city.state + ", " + city.country}
     </Option>
   ));
   let filteredOptions = props.inputText
@@ -102,7 +109,7 @@ const OptionList = props => {
         )
         .map(city => (
           <Option key={city.id} id={city.id} onClick={handleClick}>
-            {city.city + ", " + city.country}
+            {city.city + ", " + city.state + ", " + city.country}
           </Option>
         ))
     : [];

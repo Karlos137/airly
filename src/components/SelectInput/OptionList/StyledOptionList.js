@@ -16,6 +16,7 @@ const StyledOptionList = styled.div`
   z-index: 2;
   max-height: 200px;
   overflow-y: scroll;
+  cursor: pointer;
 
   @media (${props => props.theme.mediaQueries.desktop}) {
     width: 350px;

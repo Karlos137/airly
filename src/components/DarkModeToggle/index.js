@@ -23,7 +23,7 @@ const DarkModeToggle = props => {
     }
   };
   return (
-    <ToggleWrapper for={props.for}>
+    <ToggleWrapper for={props.for} landingPage={props.landingPage}>
       <Text>DARK MODE</Text>
       <Switch onClick={handleClick}>
         {isChecked ? <Slider checked /> : <Slider />}

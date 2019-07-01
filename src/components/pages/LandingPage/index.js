@@ -44,7 +44,7 @@ const LandingPage = () => {
         <Button onClick={handleRedirect}>START</Button>
         {renderRedirect()}
       </ContentWrapper>
-      <DarkModeToggle />
+      <DarkModeToggle for="mobile" landingPage />
     </>
   );
 };

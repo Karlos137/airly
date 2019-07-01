@@ -21,10 +21,12 @@ const LandingPage = () => {
 
   const [redirect, setRedirect] = useState(false);
 
+  //set redirect to true after clicking the button
   const handleRedirect = () => {
     setRedirect(true);
   };
 
+  //if redirect is true, render <Redirect /> that leads to /weather-aqi page
   const renderRedirect = () => {
     if (redirect) {
       return <Redirect to="/weather-aqi" />;

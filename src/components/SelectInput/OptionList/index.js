@@ -66,7 +66,14 @@ const OptionList = props => {
     ) {
       fetchWeather();
     }
-  }, [selectedOption, setWeather]);
+  }, [
+    selectedOption,
+    setWeather,
+    props.inputText,
+    props.second,
+    setLoading,
+    weather
+  ]);
 
   //after clicking on option from option list close option list and set input value in select
   const handleClick = e => {

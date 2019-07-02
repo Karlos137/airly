@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 
+// styled component imports
 import Wrapper from "./Wrapper";
 import StyledSelectInput from "./StyledSelectInput";
 import ArrowIcon from "./ArrowIcon";
@@ -11,6 +12,7 @@ const SelectInput = props => {
   const [fullOptionListOpen, setFullOptionList] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+  //after change in select input set value of input and set filtered option list visible/hidden
   const handleChange = e => {
     if (e.target.value !== "") {
       setOptionList(true);
@@ -20,10 +22,12 @@ const SelectInput = props => {
     setInputValue(e.target.value);
   };
 
+  // after clicking on arrow in input set full option list to visible/hidden
   const handleClick = () => {
     setFullOptionList(!fullOptionListOpen);
   };
 
+  // after changing url set full/filtered option list and input value to default
   props.history.listen(() => {
     setOptionList(false);
     setFullOptionList(false);

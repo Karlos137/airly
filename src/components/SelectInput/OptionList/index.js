@@ -17,19 +17,18 @@ const OptionList = props => {
   const [weather, setWeather] = useContext(WeatherContext);
   const [, setLoading] = useContext(LoadingContext);
 
-  useEffect(() => {
-    console.log("USE EFFECT");
-    console.log(weather);
-    console.log(selectedOption);
-    if (selectedOption.firstSelect !== null && !props.second) {
-      props.setInputText(
-        selectedOption.firstSelect.city +
-          ", " +
-          selectedOption.firstSelect.country
-      );
-    }
+  // check if selected option in first select is not null (after using COMPARE link) and setting value of this select
+  if (selectedOption.firstSelect !== null && !props.second) {
+    props.setInputText(
+      selectedOption.firstSelect.city +
+        ", " +
+        selectedOption.firstSelect.country
+    );
+  }
 
+  useEffect(() => {
     const fetchWeather = async () => {
+      // if value in first/second select is not empty string set weather in weather context
       if (props.second && props.inputText !== "") {
         setWeather({ firstSelect: null, secondSelect: null });
         setLoading(true);
@@ -60,6 +59,7 @@ const OptionList = props => {
         setWeather({ ...weather, firstSelect: weatherData });
       }
     };
+
     if (
       selectedOption.firstSelect !== null ||
       selectedOption.secondSelect !== null
@@ -68,12 +68,14 @@ const OptionList = props => {
     }
   }, [selectedOption, setWeather]);
 
+  //after clicking on option from option list close option list and set input value in select
   const handleClick = e => {
     props.setOptionList(false);
     props.setFullOptionList(false);
     props.setInputText(
       cities[e.target.id].city + ", " + cities[e.target.id].country
     );
+    // check for first or second select
     if (props.second) {
       setSelectedOption({
         ...selectedOption,
@@ -100,6 +102,7 @@ const OptionList = props => {
       {city.city + ", " + city.state + ", " + city.country}
     </Option>
   ));
+
   let filteredOptions = props.inputText
     ? cities
         .filter(

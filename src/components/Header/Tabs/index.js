@@ -1,19 +1,22 @@
 import React, { useContext } from "react";
 
-import { WeatherContext } from "../../../context/WeatherContext";
-import { OptionContext } from "../../../context/OptionContext";
-
+//styled components imports
 import StyledTabs from "./StyledTabs";
 import Tab from "./Tab/index";
+
+//context imports
+import { WeatherContext } from "../../../context/WeatherContext";
+import { OptionContext } from "../../../context/OptionContext";
 
 const Tabs = props => {
   const [, setSelectedOption] = useContext(OptionContext);
   const [, setWeather] = useContext(WeatherContext);
+
   const handleClick = () => {
-    console.log("dd");
     setSelectedOption({ firstSelect: null, secondSelect: null });
     setWeather({ firstSelect: null, secondSelect: null });
   };
+
   return (
     <StyledTabs onClick={handleClick}>
       <Tab

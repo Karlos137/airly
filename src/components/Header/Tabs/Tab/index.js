@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
+//styled components imports
 import StyledTab from "./StyledTab";
 import Text from "./Text";
 

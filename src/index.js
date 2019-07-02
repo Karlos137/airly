@@ -10,8 +10,6 @@ import { OptionProvider } from "./context/OptionContext";
 import { WeatherProvider } from "./context/WeatherContext";
 import { LoadingProvider } from "./context/LoadingContext";
 
-// const [darkMode] = useContext(ThemeContext);
-
 ReactDOM.render(
   <LoadingProvider>
     <WeatherProvider>

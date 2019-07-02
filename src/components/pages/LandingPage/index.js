@@ -21,7 +21,6 @@ const LandingPage = () => {
 
   const [redirect, setRedirect] = useState(false);
 
-  //set redirect to true after clicking the button
   const handleRedirect = () => {
     setRedirect(true);
   };

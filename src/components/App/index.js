@@ -8,7 +8,7 @@ import { lightTheme, darkTheme } from "../../utils-styled-components/themes";
 import LandingPage from "../pages/LandingPage/index";
 import MainPage from "../pages/MainPage/index";
 
-//context providers
+//context imports
 import { ThemeContext } from "../../context/ThemeContext";
 
 const App = () => {

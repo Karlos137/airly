@@ -1,11 +1,13 @@
 import React from "react";
 
+//styled components imports
 import Wrapper from "./Wrapper";
 import IconWrapper from "./IconWrapper";
 import ItemText from "./ItemText";
 import Units from "./Units";
 import Name from "./Name";
 
+//svg imports
 import { ReactComponent as Temp } from "../../images/sun.svg";
 import { ReactComponent as Wind } from "../../images/wind.svg";
 import { ReactComponent as Hum } from "../../images/humidity.svg";

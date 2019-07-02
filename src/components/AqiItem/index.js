@@ -1,6 +1,6 @@
 import React from "react";
 
-//styled components
+//styled components imports
 import Num from "./Num";
 import Text from "./Text";
 import Title from "./Title";

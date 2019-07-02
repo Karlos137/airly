@@ -107,7 +107,25 @@ const MainPage = props => {
   const [weather] = useContext(WeatherContext);
   const [selectedOption] = useContext(OptionContext);
   const [loading] = useContext(LoadingContext);
-  console.log(weather);
+
+  //get AQI text according to aqi value
+  const getAqiText = aqi => {
+    let aqiText = "";
+    if (aqi <= 50) {
+      aqiText = "GOOD";
+    } else if (aqi <= 100) {
+      aqiText = "MODERATE";
+    } else if (aqi <= 150) {
+      aqiText = "UNHEALTHY FOR SENSITIVE GROUPS";
+    } else if (aqi <= 200) {
+      aqiText = "UNHEALTHY";
+    } else if (aqi <= 300) {
+      aqiText = "VERY UNHEALTHY";
+    } else {
+      aqiText = "HAZARDOUS";
+    }
+    return aqiText;
+  };
   const renderWeatherTab = () => {
     if (weather.firstSelect === null) {
       return (
@@ -121,20 +139,6 @@ const MainPage = props => {
         </>
       );
     } else {
-      let aqiText = "";
-      if (weather.firstSelect.pollution.aqius <= 50) {
-        aqiText = "GOOD";
-      } else if (weather.firstSelect.pollution.aqius <= 100) {
-        aqiText = "MODERATE";
-      } else if (weather.firstSelect.pollution.aqius <= 150) {
-        aqiText = "UNHEALTHY FOR SENSITIVE GROUPS";
-      } else if (weather.firstSelect.pollution.aqius <= 200) {
-        aqiText = "UNHEALTHY";
-      } else if (weather.firstSelect.pollution.aqius <= 300) {
-        aqiText = "VERY UNHEALTHY";
-      } else {
-        aqiText = "HAZARDOUS";
-      }
       return (
         <>
           <SelectInput />
@@ -162,7 +166,7 @@ const MainPage = props => {
               <AqiItemWrapper>
                 <AqiItem
                   value={weather.firstSelect.pollution.aqius}
-                  text={aqiText}
+                  text={getAqiText(weather.firstSelect.pollution.aqius)}
                 />
                 <div />
                 <NavLink to="/compare-aqi">COMPARE</NavLink>
@@ -187,35 +191,6 @@ const MainPage = props => {
         </>
       );
     } else {
-      let aqiText = "";
-      let aqiText2 = "";
-      if (weather.firstSelect.pollution.aqius <= 50) {
-        aqiText = "GOOD";
-      } else if (weather.firstSelect.pollution.aqius <= 100) {
-        aqiText = "MODERATE";
-      } else if (weather.firstSelect.pollution.aqius <= 150) {
-        aqiText = "UNHEALTHY FOR SENSITIVE GROUPS";
-      } else if (weather.firstSelect.pollution.aqius <= 200) {
-        aqiText = "UNHEALTHY";
-      } else if (weather.firstSelect.pollution.aqius <= 300) {
-        aqiText = "VERY UNHEALTHY";
-      } else {
-        aqiText = "HAZARDOUS";
-      }
-      if (weather.secondSelect.pollution.aqius <= 50) {
-        aqiText2 = "GOOD";
-      } else if (weather.secondSelect.pollution.aqius <= 100) {
-        aqiText2 = "MODERATE";
-      } else if (weather.secondSelect.pollution.aqius <= 150) {
-        aqiText2 = "UNHEALTHY FOR SENSITIVE GROUPS";
-      } else if (weather.secondSelect.pollution.aqius <= 200) {
-        aqiText2 = "UNHEALTHY";
-      } else if (weather.secondSelect.pollution.aqius <= 300) {
-        aqiText2 = "VERY UNHEALTHY";
-      } else {
-        aqiText2 = "HAZARDOUS";
-      }
-
       const aqiDifference =
         100 -
         Math.round(
@@ -241,13 +216,13 @@ const MainPage = props => {
             <AqiItem
               compare
               value={weather.firstSelect.pollution.aqius}
-              text={aqiText}
+              text={getAqiText(weather.firstSelect.pollution.aqius)}
             />
             <VerticalLine height={"200px"} />
             <AqiItem
               compare
               value={weather.secondSelect.pollution.aqius}
-              text={aqiText2}
+              text={getAqiText(weather.secondSelect.pollution.aqius)}
             />
           </AqiItems>
           <Text>

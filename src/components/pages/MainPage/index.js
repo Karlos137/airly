@@ -110,22 +110,30 @@ const MainPage = props => {
 
   //get AQI text according to aqi value
   const getAqiText = aqi => {
-    let aqiText = "";
+    let aqiTextValue = "";
+    let aqiTextColor = "";
     if (aqi <= 50) {
-      aqiText = "GOOD";
+      aqiTextValue = "GOOD";
+      aqiTextColor = "#24AC5E";
     } else if (aqi <= 100) {
-      aqiText = "MODERATE";
+      aqiTextValue = "MODERATE";
+      aqiTextColor = "#DFAC07";
     } else if (aqi <= 150) {
-      aqiText = "UNHEALTHY FOR SENSITIVE GROUPS";
+      aqiTextValue = "UNHEALTHY FOR SENSITIVE GROUPS";
+      aqiTextColor = "#DFAC07";
     } else if (aqi <= 200) {
-      aqiText = "UNHEALTHY";
+      aqiTextValue = "UNHEALTHY";
+      aqiTextColor = "#E53935";
     } else if (aqi <= 300) {
-      aqiText = "VERY UNHEALTHY";
+      aqiTextValue = "VERY UNHEALTHY";
+      aqiTextColor = "#E53935";
     } else {
-      aqiText = "HAZARDOUS";
+      aqiTextValue = "HAZARDOUS";
+      aqiTextColor = "#E53935";
     }
-    return aqiText;
+    return { aqiTextValue, aqiTextColor };
   };
+
   const renderWeatherTab = () => {
     if (weather.firstSelect === null) {
       return (
@@ -166,7 +174,12 @@ const MainPage = props => {
               <AqiItemWrapper>
                 <AqiItem
                   value={weather.firstSelect.pollution.aqius}
-                  text={getAqiText(weather.firstSelect.pollution.aqius)}
+                  text={
+                    getAqiText(weather.firstSelect.pollution.aqius).aqiTextValue
+                  }
+                  color={
+                    getAqiText(weather.firstSelect.pollution.aqius).aqiTextColor
+                  }
                 />
                 <div />
                 <NavLink to="/compare-aqi">COMPARE</NavLink>

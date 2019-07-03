@@ -9,19 +9,22 @@ import { GlobalProvider } from "./context/GlobalContext";
 import { OptionProvider } from "./context/OptionContext";
 import { WeatherProvider } from "./context/WeatherContext";
 import { LoadingProvider } from "./context/LoadingContext";
+import { TestProvider } from "./context/TestContext";
 
 ReactDOM.render(
-  <LoadingProvider>
-    <WeatherProvider>
-      <OptionProvider>
-        <ThemeProvider>
-          <GlobalProvider>
-            <App />
-          </GlobalProvider>
-        </ThemeProvider>
-      </OptionProvider>
-    </WeatherProvider>
-  </LoadingProvider>,
+  <TestProvider>
+    <LoadingProvider>
+      <WeatherProvider>
+        <OptionProvider>
+          <ThemeProvider>
+            <GlobalProvider>
+              <App />
+            </GlobalProvider>
+          </ThemeProvider>
+        </OptionProvider>
+      </WeatherProvider>
+    </LoadingProvider>
+  </TestProvider>,
 
   document.getElementById("root")
 );

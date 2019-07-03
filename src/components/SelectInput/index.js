@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { withRouter } from "react-router-dom";
 
 // styled component imports
@@ -7,10 +7,13 @@ import StyledSelectInput from "./StyledSelectInput";
 import ArrowIcon from "./ArrowIcon";
 import OptionList from "./OptionList/index";
 
+import { TestContext } from "../../context/TestContext";
+
 const SelectInput = props => {
   const [optionListOpen, setOptionList] = useState(false);
   const [fullOptionListOpen, setFullOptionList] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [test, setTest] = useContext(TestContext);
 
   //after change in select input set value of input and set filtered option list visible/hidden
   const handleChange = e => {
@@ -24,6 +27,9 @@ const SelectInput = props => {
 
   // after clicking on arrow in input set full option list to visible/hidden
   const handleClick = () => {
+    console.log(test);
+    setTest(!test);
+    setTest(!test);
     setFullOptionList(!fullOptionListOpen);
   };
 

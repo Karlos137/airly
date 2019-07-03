@@ -10,12 +10,19 @@ import { GlobalContext } from "../../../context/GlobalContext";
 import { OptionContext } from "../../../context/OptionContext";
 import { WeatherContext } from "../../../context/WeatherContext";
 import { LoadingContext } from "../../../context/LoadingContext";
+import { TestContext } from "../../../context/TestContext";
 
 const OptionList = props => {
   const [cities] = useContext(GlobalContext);
   const [selectedOption, setSelectedOption] = useContext(OptionContext);
   const [weather, setWeather] = useContext(WeatherContext);
   const [, setLoading] = useContext(LoadingContext);
+  const [test, setTest] = useContext(TestContext);
+
+  if (test === false) {
+    props.setOptionList(false);
+    props.setFullOptionList(false);
+  }
 
   // check if selected option in first select is not null (after using COMPARE link) and setting value of this select
   if (selectedOption.firstSelect !== null && !props.second) {

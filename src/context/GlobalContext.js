@@ -1,5 +1,6 @@
 import React, { useState, createContext } from "react";
-import Cities from "../data/data.json";
+//import Cities from "../data/data.json";
+import Cities from "../data/data-small.json";
 
 export const GlobalContext = createContext();
 

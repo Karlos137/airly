@@ -13,10 +13,12 @@ import LoadingWrapper from "./LoadingWrapper";
 //context imports
 import { GlobalContext } from "../../../context/GlobalContext";
 import { OptionContext } from "../../../context/OptionContext";
+import { WeatherContext } from "../../../context/WeatherContext";
 
 const OptionList = props => {
   const [cityList] = useContext(GlobalContext);
   const [selectedOption, setSelectedOption] = useContext(OptionContext);
+  const [weather, setWeather] = useContext(WeatherContext);
   const [loading, setLoading] = useState(true);
   const [ops, setOps] = useState(null);
 
@@ -30,7 +32,6 @@ const OptionList = props => {
       state: cityList[id].state,
       country: cityList[id].country
     };
-
     if (props.second) {
       setSelectedOption({ ...selectedOption, secondSelect: option });
     } else {
@@ -60,6 +61,50 @@ const OptionList = props => {
 
     test();
   }, []);
+
+  useEffect(() => {
+    const fetchWeather = async () => {
+      // if value in first/second select is not empty string set weather in weather context
+      console.log("USE EFFECT");
+      if (props.second && props.inputText !== "") {
+        setWeather({ firstSelect: null, secondSelect: null });
+        setLoading(true);
+        const response = await axios.get(
+          `https://api.airvisual.com/v2/city?city=${
+            selectedOption.secondSelect.city
+          }&state=${selectedOption.secondSelect.state}&country=${
+            selectedOption.secondSelect.country
+            // }&key=vLkxx5tGKKJenCmyF`
+          }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
+        );
+        const weatherData = response.data.data.current;
+        setLoading(false);
+        setWeather({ ...weather, secondSelect: weatherData });
+      } else if (props.inputText !== "") {
+        console.log(props.inputText);
+        setWeather({ firstSelect: null, secondSelect: null });
+        setLoading(true);
+        const response = await axios.get(
+          `https://api.airvisual.com/v2/city?city=${
+            selectedOption.firstSelect.city
+          }&state=${selectedOption.firstSelect.state}&country=${
+            selectedOption.firstSelect.country
+            //  }&key=vLkxx5tGKKJenCmyF`
+          }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
+        );
+        const weatherData = response.data.data.current;
+        setLoading(false);
+        setWeather({ ...weather, firstSelect: weatherData });
+      }
+    };
+
+    if (
+      selectedOption.firstSelect !== null ||
+      selectedOption.secondSelect !== null
+    ) {
+      fetchWeather();
+    }
+  }, [selectedOption]);
 
   return (
     <>

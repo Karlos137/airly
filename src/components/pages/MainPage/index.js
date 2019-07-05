@@ -48,10 +48,12 @@ const MainPage = props => {
   //       "https://api.airvisual.com/v2/countries?key=vLkxx5tGKKJenCmyF"
   //       //  "https://api.airvisual.com/v2/countries?key=928ee30f-04de-41c2-95a2-364c5fe4c140"
   //     );
-  //     const countries = response.data.data;
+  //     const countries = response.data.data
+  //
   //     for (const country of countries) {
   //       console.log(countryCounter);
-  //       if (countryCounter > 97) {
+  //       if (countryCounter > 95) {
+  //         console.log(countryCounter);
   //         result.push({ country: country.country, states: [] });
   //         const response = await axios.get(
   //           `https://api.airvisual.com/v2/states?country=${
@@ -98,6 +100,7 @@ const MainPage = props => {
   //         console.log("p");
   //         result.push({});
   //       }
+
   //       countryCounter += 1;
   //       console.log(JSON.stringify(result));
   //       console.log("Countries: " + countryCounter);

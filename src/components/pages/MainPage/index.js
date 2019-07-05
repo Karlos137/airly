@@ -1,6 +1,4 @@
-import React, { useEffect, useContext } from "react";
-
-import axios from "axios";
+import React, { useContext } from "react";
 
 //SVG imports
 import { ReactComponent as Loading } from "../../../images/loading.svg";
@@ -37,79 +35,6 @@ import AqiItem from "../../AqiItem/index";
 import DarkModeToggle from "../../DarkModeToggle/index";
 
 const MainPage = props => {
-  // console.log(CitysData);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = [];
-  //     let countryCounter = 0;
-
-  //     const delay = t => new Promise(resolve => setTimeout(resolve, t));
-
-  //     const response = await axios.get(
-  //       "https://api.airvisual.com/v2/countries?key=vLkxx5tGKKJenCmyF"
-  //       //  "https://api.airvisual.com/v2/countries?key=928ee30f-04de-41c2-95a2-364c5fe4c140"
-  //     );
-  //     const countries = response.data.data
-  //
-  //     for (const country of countries) {
-  //       console.log(countryCounter);
-  //       if (countryCounter > 95) {
-  //         console.log(countryCounter);
-  //         result.push({ country: country.country, states: [] });
-  //         const response = await axios.get(
-  //           `https://api.airvisual.com/v2/states?country=${
-  //             country.country
-  //           }&key=vLkxx5tGKKJenCmyF`
-  //         );
-  //         await delay(10000);
-  //         const states = response.data.data;
-
-  //         let stateCounter = 0;
-  //         for (const state of states) {
-  //           if (state.state === "South Australia") {
-  //             state.state = "SouthAustralia";
-  //           }
-
-  //           if (state.state === "Federation of B&H") {
-  //             state.state = "Federation of B H";
-  //           }
-  //           result[countryCounter].states.push({
-  //             state: state.state,
-  //             cities: []
-  //           });
-  //           try {
-  //             console.log(result);
-  //             const response = await axios.get(
-  //               `https://api.airvisual.com/v2/cities?state=${
-  //                 state.state
-  //               }&country=${country.country}&key=vLkxx5tGKKJenCmyF`
-  //             );
-  //             await delay(10000);
-  //             const cities = response.data.data;
-  //             for (const city of cities) {
-  //               result[countryCounter].states[stateCounter].cities.push(
-  //                 city.city
-  //               );
-  //             }
-  //             stateCounter += 1;
-  //           } catch (error) {
-  //             stateCounter += 1;
-  //             console.error(error);
-  //           }
-  //         }
-  //       } else {
-  //         console.log("p");
-  //         result.push({});
-  //       }
-
-  //       countryCounter += 1;
-  //       console.log(JSON.stringify(result));
-  //       console.log("Countries: " + countryCounter);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
   const [weather] = useContext(WeatherContext);
   const [selectedOption] = useContext(OptionContext);
   const [loading] = useContext(LoadingContext);
@@ -202,7 +127,10 @@ const MainPage = props => {
     if (weather.firstSelect === null || weather.secondSelect === null) {
       return (
         <>
-          <SelectInput /> <SelectInput marginTop={"20px"} second />
+          <>
+            <SelectInput first />
+          </>
+          <SelectInput marginTop={"20px"} second />
           {loading ? (
             <LoadingWrapper>
               <Loading />
@@ -219,7 +147,8 @@ const MainPage = props => {
         );
       return (
         <>
-          <SelectInput /> <SelectInput marginTop={"20px"} second />
+          <SelectInput first />
+          <SelectInput marginTop={"20px"} second />
           <Cities>
             <City>
               <CityName>{selectedOption.firstSelect.city}</CityName>

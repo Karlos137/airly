@@ -45,8 +45,8 @@ const OptionList = props => {
             selectedOption.secondSelect.city
           }&state=${selectedOption.secondSelect.state}&country=${
             selectedOption.secondSelect.country
-            // }&key=vLkxx5tGKKJenCmyF`
-          }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
+          }&key=vLkxx5tGKKJenCmyF`
+          //}&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
         );
         const weatherData = response.data.data.current;
         setLoading(false);
@@ -60,8 +60,8 @@ const OptionList = props => {
             selectedOption.firstSelect.city
           }&state=${selectedOption.firstSelect.state}&country=${
             selectedOption.firstSelect.country
-            //  }&key=vLkxx5tGKKJenCmyF`
-          }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
+          }&key=vLkxx5tGKKJenCmyF`
+          //}&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
         );
         const weatherData = response.data.data.current;
         setLoading(false);

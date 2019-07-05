@@ -11,7 +11,7 @@ const StyledOptionList = styled.div`
       ? "0px 3px 7px " + props.theme.colors.dropBoxShadow
       : "none"};
   padding: 15px 15px 0;
-  display: ${props => (props.isOpen ? "inline-block" : "none")};
+  /* display: ${props => (props.isOpen ? "inline-block" : "none")}; */
   position: relative;
   z-index: 2;
   max-height: 200px;

@@ -36,6 +36,7 @@ const OptionList = props => {
   useEffect(() => {
     const fetchWeather = async () => {
       // if value in first/second select is not empty string set weather in weather context
+      console.log("USE EFFECT");
       if (props.second && props.inputText !== "") {
         setWeather({ firstSelect: null, secondSelect: null });
         setLoading(true);
@@ -51,6 +52,7 @@ const OptionList = props => {
         setLoading(false);
         setWeather({ ...weather, secondSelect: weatherData });
       } else if (props.inputText !== "") {
+        console.log(props.inputText);
         setWeather({ firstSelect: null, secondSelect: null });
         setLoading(true);
         const response = await axios.get(
@@ -73,14 +75,7 @@ const OptionList = props => {
     ) {
       fetchWeather();
     }
-  }, [
-    selectedOption,
-    setWeather,
-    props.inputText,
-    props.second,
-    setLoading,
-    weather
-  ]);
+  }, [selectedOption]);
 
   //after clicking on option from option list close option list and set input value in select
   const handleClick = e => {
@@ -100,6 +95,7 @@ const OptionList = props => {
         }
       });
     } else {
+      console.log("PRVE");
       setSelectedOption({
         ...selectedOption,
         firstSelect: {
@@ -108,6 +104,7 @@ const OptionList = props => {
           country: cities[e.target.id].country
         }
       });
+      console.log(selectedOption);
     }
   };
 

@@ -52,6 +52,7 @@ const SelectInput = props => {
         <OptionList
           setInputValue={setInputValue}
           setOptionList={setOptionList}
+          inputText={inputValue}
           second={props.second}
         />
       ) : null}

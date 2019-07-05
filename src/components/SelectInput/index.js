@@ -8,12 +8,12 @@ import ArrowIcon from "./ArrowIcon";
 
 import OptionList from "./OptionList/index2";
 
-//import { TestContext } from "../../context/TestContext";
+import { TestContext } from "../../context/TestContext";
 
 const SelectInput = props => {
   const [optionListOpen, setOptionList] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  //const [test, setTest] = useContext(TestContext);
+  const [test, setTest] = useContext(TestContext);
 
   //after change in select input set value of input and set filtered option list visible/hidden
   const handleChange = e => {
@@ -28,8 +28,8 @@ const SelectInput = props => {
   // after clicking on arrow in input set full option list to visible/hidden
   const handleClick = () => {
     // console.log(test);
-    // setTest(!test);
-    // setTest(!test);
+    setTest(!test);
+    setTest(!test);
     setOptionList(!optionListOpen);
   };
 

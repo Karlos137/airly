@@ -15,6 +15,7 @@ import { GlobalContext } from "../../../context/GlobalContext";
 import { OptionContext } from "../../../context/OptionContext";
 import { WeatherContext } from "../../../context/WeatherContext";
 import { LoadingContext } from "../../../context/LoadingContext";
+import { TestContext } from "../../../context/TestContext";
 
 const OptionList = props => {
   const [cityList] = useContext(GlobalContext);
@@ -23,6 +24,11 @@ const OptionList = props => {
   const [, setLoading] = useContext(LoadingContext);
   const [loadingOptions, setLoadingOptions] = useState(true);
   const [ops, setOps] = useState(null);
+  const [test, setTest] = useContext(TestContext);
+
+  if (test === false) {
+    props.setOptionList(false);
+  }
 
   const handleOptionClick = async e => {
     props.setInputValue(e.target.textContent);

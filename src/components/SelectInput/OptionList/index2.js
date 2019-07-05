@@ -22,9 +22,10 @@ const OptionList = props => {
   const [loading, setLoading] = useState(true);
   const [ops, setOps] = useState(null);
 
-  const handleOptionClick = e => {
+  console.log("WHAT", selectedOption);
+
+  const handleOptionClick = async e => {
     props.setInputValue(e.target.textContent);
-    props.setOptionList(false);
 
     const id = e.target.id;
     const option = {
@@ -33,10 +34,12 @@ const OptionList = props => {
       country: cityList[id].country
     };
     if (props.second) {
-      setSelectedOption({ ...selectedOption, secondSelect: option });
+      await setSelectedOption({ ...selectedOption, secondSelect: option });
     } else {
-      setSelectedOption({ ...selectedOption, firstSelect: option });
+      await setSelectedOption({ ...selectedOption, firstSelect: option });
     }
+
+    props.setOptionList(false);
   };
 
   useEffect(() => {

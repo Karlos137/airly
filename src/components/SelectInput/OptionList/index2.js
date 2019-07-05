@@ -14,15 +14,15 @@ import LoadingWrapper from "./LoadingWrapper";
 import { GlobalContext } from "../../../context/GlobalContext";
 import { OptionContext } from "../../../context/OptionContext";
 import { WeatherContext } from "../../../context/WeatherContext";
+import { LoadingContext } from "../../../context/LoadingContext";
 
 const OptionList = props => {
   const [cityList] = useContext(GlobalContext);
   const [selectedOption, setSelectedOption] = useContext(OptionContext);
   const [weather, setWeather] = useContext(WeatherContext);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useContext(LoadingContext);
+  const [loadingOptions, setLoadingOptions] = useState(true);
   const [ops, setOps] = useState(null);
-
-  console.log("WHAT", selectedOption);
 
   const handleOptionClick = async e => {
     props.setInputValue(e.target.textContent);
@@ -56,13 +56,13 @@ const OptionList = props => {
       });
     };
 
-    const test = async () => {
+    const setOptions = async () => {
       const result = await renderOptions();
       setOps(result);
-      setLoading(false);
+      setLoadingOptions(false);
     };
 
-    test();
+    setOptions();
   }, []);
 
   useEffect(() => {
@@ -112,7 +112,7 @@ const OptionList = props => {
   return (
     <>
       <StyledOptionList>
-        {loading ? (
+        {loadingOptions ? (
           <LoadingWrapper>
             <Loading />
           </LoadingWrapper>

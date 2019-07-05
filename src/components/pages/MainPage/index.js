@@ -234,13 +234,23 @@ const MainPage = props => {
             <AqiItem
               compare
               value={weather.firstSelect.pollution.aqius}
-              text={getAqiText(weather.firstSelect.pollution.aqius)}
+              text={
+                getAqiText(weather.firstSelect.pollution.aqius).aqiTextValue
+              }
+              color={
+                getAqiText(weather.firstSelect.pollution.aqius).aqiTextColor
+              }
             />
             <VerticalLine height={"200px"} />
             <AqiItem
               compare
               value={weather.secondSelect.pollution.aqius}
-              text={getAqiText(weather.secondSelect.pollution.aqius)}
+              text={
+                getAqiText(weather.secondSelect.pollution.aqius).aqiTextValue
+              }
+              color={
+                getAqiText(weather.secondSelect.pollution.aqius).aqiTextColor
+              }
             />
           </AqiItems>
           <Text>

@@ -9,10 +9,10 @@ import { GlobalProvider } from "./context/GlobalContext";
 import { OptionProvider } from "./context/OptionContext";
 import { WeatherProvider } from "./context/WeatherContext";
 import { LoadingProvider } from "./context/LoadingContext";
-import { TestProvider } from "./context/TestContext";
+import { OptionListProvider } from "./context/OptionListContext";
 
 ReactDOM.render(
-  <TestProvider>
+  <OptionListProvider>
     <LoadingProvider>
       <WeatherProvider>
         <OptionProvider>
@@ -24,7 +24,7 @@ ReactDOM.render(
         </OptionProvider>
       </WeatherProvider>
     </LoadingProvider>
-  </TestProvider>,
+  </OptionListProvider>,
 
   document.getElementById("root")
 );

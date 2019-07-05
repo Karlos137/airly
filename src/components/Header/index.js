@@ -12,20 +12,12 @@ import DarkModeToggle from "../DarkModeToggle/index";
 
 //context imports
 import { ThemeContext } from "../../context/ThemeContext";
-import { TestContext } from "../../context/TestContext";
 
 const Header = () => {
   const [darkTheme] = useContext(ThemeContext);
-  const [test, setTest] = useContext(TestContext);
   return (
     <StyledHeader>
-      <LogoWrapper
-        onClick={() => {
-          setTest(false);
-        }}
-      >
-        {darkTheme ? <LogoDarkMode /> : <Logo />}
-      </LogoWrapper>
+      <LogoWrapper>{darkTheme ? <LogoDarkMode /> : <Logo />}</LogoWrapper>
       <Wrapper>
         <div />
         <Tabs />

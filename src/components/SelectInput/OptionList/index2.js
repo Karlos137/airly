@@ -15,7 +15,7 @@ import { GlobalContext } from "../../../context/GlobalContext";
 import { OptionContext } from "../../../context/OptionContext";
 import { WeatherContext } from "../../../context/WeatherContext";
 import { LoadingContext } from "../../../context/LoadingContext";
-import { TestContext } from "../../../context/TestContext";
+import { OptionListContext } from "../../../context/OptionListContext";
 
 const OptionList = props => {
   const [cityList] = useContext(GlobalContext);
@@ -24,9 +24,9 @@ const OptionList = props => {
   const [, setLoading] = useContext(LoadingContext);
   const [loadingOptions, setLoadingOptions] = useState(true);
   const [ops, setOps] = useState(null);
-  const [test, setTest] = useContext(TestContext);
+  const [optionListOpen] = useContext(OptionListContext);
 
-  if (test === false) {
+  if (optionListOpen === false) {
     props.setOptionList(false);
   }
 

@@ -9,6 +9,7 @@ import { ReactComponent as Loading } from "../../../images/loading.svg";
 import { WeatherContext } from "../../../context/WeatherContext";
 import { OptionContext } from "../../../context/OptionContext";
 import { LoadingContext } from "../../../context/LoadingContext";
+import { OptionListContext } from "../../../context/OptionListContext";
 
 //styled components imports
 import Wrapper from "./Wrapper";
@@ -112,6 +113,7 @@ const MainPage = props => {
   const [weather] = useContext(WeatherContext);
   const [selectedOption] = useContext(OptionContext);
   const [loading] = useContext(LoadingContext);
+  const [, setOptionListOpen] = useContext(OptionListContext);
 
   //get AQI text according to aqi value
   const getAqiText = aqi => {
@@ -266,9 +268,14 @@ const MainPage = props => {
     }
   };
 
+  const handleCloseOptionListClick = e => {
+    if (!(e.target.tagName === "svg" || e.target.tagName === "path")) {
+      setOptionListOpen(false);
+    }
+  };
   return (
     <Wrapper>
-      <ContentWrapper>
+      <ContentWrapper onClick={handleCloseOptionListClick}>
         <Header />
         {props.tab === "compare" ? renderCompareTab() : renderWeatherTab()}
       </ContentWrapper>

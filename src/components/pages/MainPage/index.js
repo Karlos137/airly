@@ -8,6 +8,7 @@ import { WeatherContext } from "../../../context/WeatherContext";
 import { OptionContext } from "../../../context/OptionContext";
 import { LoadingContext } from "../../../context/LoadingContext";
 import { OptionListContext } from "../../../context/OptionListContext";
+import { ImageContext } from "../../../context/ImageContext";
 
 //styled components imports
 import Wrapper from "./Wrapper";
@@ -39,6 +40,7 @@ const MainPage = props => {
   const [selectedOption] = useContext(OptionContext);
   const [loading] = useContext(LoadingContext);
   const [, setOptionListOpen] = useContext(OptionListContext);
+  const [image] = useContext(ImageContext);
 
   //get AQI text according to aqi value
   const getAqiText = aqi => {
@@ -82,7 +84,7 @@ const MainPage = props => {
       return (
         <>
           <SelectInput />
-          <CityImage src="https://hoodline.imgix.net/uploads/story/image/417236/..destination_photo_url..PRAG-sky.jpg.jpg?auto=format" />
+          <CityImage src={image} />
           <Content>
             <div>
               <Title>WEATHER</Title>

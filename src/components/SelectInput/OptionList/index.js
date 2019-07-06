@@ -157,7 +157,7 @@ const OptionList = props => {
 
   return (
     <>
-      <StyledOptionList filtered={props.filtered}>
+      <StyledOptionList>
         {loadingOptions ? (
           <LoadingWrapper>
             <Loading />

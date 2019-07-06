@@ -28,6 +28,8 @@ const OptionList = props => {
   const [optionListOpen] = useContext(OptionListContext);
   const [, setImage] = useContext(ImageContext);
 
+  const [effect, setEffect] = useState(false);
+
   if (optionListOpen === false) {
     props.setOptionList(false);
   }
@@ -47,6 +49,7 @@ const OptionList = props => {
       await setSelectedOption({ ...selectedOption, firstSelect: option });
     }
 
+    console.log(selectedOption.firstSelect);
     props.setOptionList(false);
   };
 
@@ -75,61 +78,66 @@ const OptionList = props => {
   }, []);
 
   useEffect(() => {
-    const fetchWeather = async () => {
-      // if value in first/second select is not empty string set weather in weather context
-      console.log(selectedOption);
-      if (props.second && selectedOption.secondSelect !== null) {
-        setLoading(true);
-        const response = await axios.get(
-          `https://api.airvisual.com/v2/city?city=${
-            selectedOption.secondSelect.city
-          }&state=${selectedOption.secondSelect.state}&country=${
-            selectedOption.secondSelect.country
-            // }&key=vLkxx5tGKKJenCmyF`
-          }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
-        );
-        const weatherData = response.data.data.current;
-        setLoading(false);
-        setWeather({ ...weather, secondSelect: weatherData });
-      } else if (selectedOption.firstSelect !== null) {
-        setLoading(true);
-        const imageQuery =
-          props.inputText.split(",")[0] +
-          " " +
-          props.inputText.split(",")[1] +
-          " city";
+    console.log("USE");
+    if (effect) {
+      console.log("THIS");
+      const fetchWeather = async () => {
+        // if value in first/second select is not empty string set weather in weather context
+        console.log(selectedOption);
+        if (props.second && selectedOption.secondSelect !== null) {
+          setLoading(true);
+          const response = await axios.get(
+            `https://api.airvisual.com/v2/city?city=${
+              selectedOption.secondSelect.city
+            }&state=${selectedOption.secondSelect.state}&country=${
+              selectedOption.secondSelect.country
+              // }&key=vLkxx5tGKKJenCmyF`
+            }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
+          );
+          const weatherData = response.data.data.current;
+          setLoading(false);
+          setWeather({ ...weather, secondSelect: weatherData });
+        } else if (selectedOption.firstSelect !== null) {
+          setLoading(true);
+          const imageQuery =
+            props.inputText.split(",")[0] +
+            " " +
+            props.inputText.split(",")[1] +
+            " city";
 
-        console.log(imageQuery);
-        const responseImage = await axios.get(
-          `https://api.unsplash.com/search/photos?client_id=cacdd0440db064f81ff57fed9acb29fb3701fbd3296e7e3f0dc0d19be877f479&page=1&per_page=1&query=${imageQuery}`
-        );
+          console.log(imageQuery);
+          const responseImage = await axios.get(
+            `https://api.unsplash.com/search/photos?client_id=cacdd0440db064f81ff57fed9acb29fb3701fbd3296e7e3f0dc0d19be877f479&page=1&per_page=1&query=${imageQuery}`
+          );
 
-        const imageURL = responseImage.data.results[0].urls.regular;
-        setImage(imageURL);
+          const imageURL = responseImage.data.results[0].urls.regular;
+          setImage(imageURL);
 
-        const responseWeather = await axios.get(
-          `https://api.airvisual.com/v2/city?city=${
-            selectedOption.firstSelect.city
-          }&state=${selectedOption.firstSelect.state}&country=${
-            selectedOption.firstSelect.country
-            //  }&key=vLkxx5tGKKJenCmyF`
-          }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
-        );
-        const weatherData = responseWeather.data.data.current;
-        setLoading(false);
-        setWeather({ ...weather, firstSelect: weatherData });
+          const responseWeather = await axios.get(
+            `https://api.airvisual.com/v2/city?city=${
+              selectedOption.firstSelect.city
+            }&state=${selectedOption.firstSelect.state}&country=${
+              selectedOption.firstSelect.country
+              //  }&key=vLkxx5tGKKJenCmyF`
+            }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
+          );
+          const weatherData = responseWeather.data.data.current;
+          setLoading(false);
+          setWeather({ ...weather, firstSelect: weatherData });
+        }
+      };
+
+      if (
+        selectedOption.firstSelect !== null ||
+        selectedOption.secondSelect !== null
+      ) {
+        fetchWeather();
       }
-    };
-
-    if (
-      selectedOption.firstSelect !== null ||
-      selectedOption.secondSelect !== null
-    ) {
-      fetchWeather();
     }
   }, [selectedOption]);
 
   useEffect(() => {
+    setEffect(true);
     if (props.filtered === true) {
       const renderOptions = () => {
         const options = cityList

@@ -10,21 +10,24 @@ import { OptionProvider } from "./context/OptionContext";
 import { WeatherProvider } from "./context/WeatherContext";
 import { LoadingProvider } from "./context/LoadingContext";
 import { OptionListProvider } from "./context/OptionListContext";
+import { ImageProvider } from "./context/ImageContext";
 
 ReactDOM.render(
-  <OptionListProvider>
-    <LoadingProvider>
-      <WeatherProvider>
-        <OptionProvider>
-          <ThemeProvider>
-            <GlobalProvider>
-              <App />
-            </GlobalProvider>
-          </ThemeProvider>
-        </OptionProvider>
-      </WeatherProvider>
-    </LoadingProvider>
-  </OptionListProvider>,
+  <ImageProvider>
+    <OptionListProvider>
+      <LoadingProvider>
+        <WeatherProvider>
+          <OptionProvider>
+            <ThemeProvider>
+              <GlobalProvider>
+                <App />
+              </GlobalProvider>
+            </ThemeProvider>
+          </OptionProvider>
+        </WeatherProvider>
+      </LoadingProvider>
+    </OptionListProvider>
+  </ImageProvider>,
 
   document.getElementById("root")
 );

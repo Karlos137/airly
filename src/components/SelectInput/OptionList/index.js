@@ -16,6 +16,7 @@ import { OptionContext } from "../../../context/OptionContext";
 import { WeatherContext } from "../../../context/WeatherContext";
 import { LoadingContext } from "../../../context/LoadingContext";
 import { OptionListContext } from "../../../context/OptionListContext";
+import { ImageContext } from "../../../context/ImageContext";
 
 const OptionList = props => {
   const [cityList] = useContext(GlobalContext);
@@ -25,6 +26,7 @@ const OptionList = props => {
   const [loadingOptions, setLoadingOptions] = useState(true);
   const [ops, setOps] = useState(null);
   const [optionListOpen] = useContext(OptionListContext);
+  const [, setImage] = useContext(ImageContext);
 
   if (optionListOpen === false) {
     props.setOptionList(false);
@@ -75,9 +77,7 @@ const OptionList = props => {
   useEffect(() => {
     const fetchWeather = async () => {
       // if value in first/second select is not empty string set weather in weather context
-      console.log("USE EFFECT");
       if (props.second && props.inputText !== "") {
-        // setWeather({ firstSelect: null, secondSelect: null });
         setLoading(true);
         const response = await axios.get(
           `https://api.airvisual.com/v2/city?city=${
@@ -91,10 +91,22 @@ const OptionList = props => {
         setLoading(false);
         setWeather({ ...weather, secondSelect: weatherData });
       } else if (props.inputText !== "") {
-        console.log(props.inputText);
-        // setWeather({ firstSelect: null, secondSelect: null });
         setLoading(true);
-        const response = await axios.get(
+        const imageQuery =
+          props.inputText.split(",")[0] +
+          " " +
+          props.inputText.split(",")[1] +
+          " city";
+
+        console.log(imageQuery);
+        const responseImage = await axios.get(
+          `https://api.unsplash.com/search/photos?client_id=cacdd0440db064f81ff57fed9acb29fb3701fbd3296e7e3f0dc0d19be877f479&page=1&per_page=1&query=${imageQuery}`
+        );
+
+        const imageURL = responseImage.data.results[0].urls.regular;
+        setImage(imageURL);
+
+        const responseWeather = await axios.get(
           `https://api.airvisual.com/v2/city?city=${
             selectedOption.firstSelect.city
           }&state=${selectedOption.firstSelect.state}&country=${
@@ -102,7 +114,7 @@ const OptionList = props => {
             //  }&key=vLkxx5tGKKJenCmyF`
           }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
         );
-        const weatherData = response.data.data.current;
+        const weatherData = responseWeather.data.data.current;
         setLoading(false);
         setWeather({ ...weather, firstSelect: weatherData });
       }

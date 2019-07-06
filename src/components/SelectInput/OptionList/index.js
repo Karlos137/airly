@@ -1,67 +1,105 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import axios from "axios";
 
+//SVG imports
+import { ReactComponent as Loading } from "../../../images/loading.svg";
+
+//styled components imports
 import StyledOptionList from "./StyledOptionList";
 import Option from "./Option";
+import LoadingWrapper from "./LoadingWrapper";
 
 //context imports
 import { GlobalContext } from "../../../context/GlobalContext";
 import { OptionContext } from "../../../context/OptionContext";
 import { WeatherContext } from "../../../context/WeatherContext";
 import { LoadingContext } from "../../../context/LoadingContext";
-import { TestContext } from "../../../context/TestContext";
+import { OptionListContext } from "../../../context/OptionListContext";
 
 const OptionList = props => {
-  const [cities] = useContext(GlobalContext);
+  const [cityList] = useContext(GlobalContext);
   const [selectedOption, setSelectedOption] = useContext(OptionContext);
   const [weather, setWeather] = useContext(WeatherContext);
   const [, setLoading] = useContext(LoadingContext);
-  const [test, setTest] = useContext(TestContext);
+  const [loadingOptions, setLoadingOptions] = useState(true);
+  const [ops, setOps] = useState(null);
+  const [optionListOpen] = useContext(OptionListContext);
 
-  if (test === false) {
+  if (optionListOpen === false) {
     props.setOptionList(false);
-    props.setFullOptionList(false);
   }
 
-  // check if selected option in first select is not null (after using COMPARE link) and setting value of this select
-  if (selectedOption.firstSelect !== null && !props.second) {
-    props.setInputText(
-      selectedOption.firstSelect.city +
-        ", " +
-        selectedOption.firstSelect.country
-    );
-  }
+  const handleOptionClick = async e => {
+    props.setInputValue(e.target.textContent);
+
+    const id = e.target.id;
+    const option = {
+      city: cityList[id].city,
+      state: cityList[id].state,
+      country: cityList[id].country
+    };
+    if (props.second) {
+      await setSelectedOption({ ...selectedOption, secondSelect: option });
+    } else {
+      await setSelectedOption({ ...selectedOption, firstSelect: option });
+    }
+
+    props.setOptionList(false);
+  };
+
+  useEffect(() => {
+    const renderOptions = () => {
+      return new Promise((resolve, reject) => {
+        const options = cityList.map(city => {
+          return (
+            <Option key={city.id} id={city.id} onClick={handleOptionClick}>
+              {city.city + ", " + city.country}
+            </Option>
+          );
+        });
+        resolve(options);
+      });
+    };
+
+    const setOptions = async () => {
+      const result = await renderOptions();
+      setOps(result);
+      setLoadingOptions(false);
+    };
+
+    setOptions();
+  }, []);
 
   useEffect(() => {
     const fetchWeather = async () => {
       // if value in first/second select is not empty string set weather in weather context
       console.log("USE EFFECT");
       if (props.second && props.inputText !== "") {
-        setWeather({ firstSelect: null, secondSelect: null });
+        // setWeather({ firstSelect: null, secondSelect: null });
         setLoading(true);
         const response = await axios.get(
           `https://api.airvisual.com/v2/city?city=${
             selectedOption.secondSelect.city
           }&state=${selectedOption.secondSelect.state}&country=${
             selectedOption.secondSelect.country
-          }&key=vLkxx5tGKKJenCmyF`
-          //}&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
+            // }&key=vLkxx5tGKKJenCmyF`
+          }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
         );
         const weatherData = response.data.data.current;
         setLoading(false);
         setWeather({ ...weather, secondSelect: weatherData });
       } else if (props.inputText !== "") {
         console.log(props.inputText);
-        setWeather({ firstSelect: null, secondSelect: null });
+        // setWeather({ firstSelect: null, secondSelect: null });
         setLoading(true);
         const response = await axios.get(
           `https://api.airvisual.com/v2/city?city=${
             selectedOption.firstSelect.city
           }&state=${selectedOption.firstSelect.state}&country=${
             selectedOption.firstSelect.country
-          }&key=vLkxx5tGKKJenCmyF`
-          //}&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
+            //  }&key=vLkxx5tGKKJenCmyF`
+          }&key=cce3afea-c44a-4e56-aedc-a586bdd818a3`
         );
         const weatherData = response.data.data.current;
         setLoading(false);
@@ -77,73 +115,17 @@ const OptionList = props => {
     }
   }, [selectedOption]);
 
-  //after clicking on option from option list close option list and set input value in select
-  const handleClick = e => {
-    props.setOptionList(false);
-    props.setFullOptionList(false);
-    props.setInputText(
-      cities[e.target.id].city + ", " + cities[e.target.id].country
-    );
-    // check for first or second select
-    if (props.second) {
-      setSelectedOption({
-        ...selectedOption,
-        secondSelect: {
-          city: cities[e.target.id].city,
-          state: cities[e.target.id].state,
-          country: cities[e.target.id].country
-        }
-      });
-    } else {
-      console.log("PRVE");
-      setSelectedOption({
-        ...selectedOption,
-        firstSelect: {
-          city: cities[e.target.id].city,
-          state: cities[e.target.id].state,
-          country: cities[e.target.id].country
-        }
-      });
-      console.log(selectedOption);
-    }
-  };
-
-  let options = cities.map(city => (
-    <Option key={city.id} id={city.id} onClick={handleClick}>
-      {city.city + ", " + city.state + ", " + city.country}
-    </Option>
-  ));
-
-  let filteredOptions = props.inputText
-    ? cities
-        .filter(
-          city =>
-            city.city.toLowerCase().includes(props.inputText.toLowerCase()) ||
-            city.country.toLowerCase().includes(props.inputText.toLowerCase())
-        )
-        .map(city => (
-          <Option key={city.id} id={city.id} onClick={handleClick}>
-            {city.city + ", " + city.state + ", " + city.country}
-          </Option>
-        ))
-    : [];
-
   return (
-    <StyledOptionList isOpen={props.isOpen}>
-      {props.inputText ? (
-        !props.fullList ? (
-          filteredOptions.length ? (
-            filteredOptions
-          ) : (
-            <Option noHover>No results found</Option>
-          )
-        ) : (
-          options
-        )
-      ) : (
-        options
-      )}
-    </StyledOptionList>
+    <>
+      <StyledOptionList>
+        {loadingOptions ? (
+          <LoadingWrapper>
+            <Loading />
+          </LoadingWrapper>
+        ) : null}
+        <>{ops}</>
+      </StyledOptionList>
+    </>
   );
 };
 

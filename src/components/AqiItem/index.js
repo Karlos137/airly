@@ -12,7 +12,7 @@ const AqiItem = props => {
       {props.compare ? (
         <Wrapper compare>
           <Num compare>{props.value}</Num>
-          <Text compare color={props.color}>
+          <Text compare color={props.color} text={props.text}>
             {props.text}
           </Text>
           <Title compare>AIR QUALITY INDEX</Title>
@@ -20,7 +20,9 @@ const AqiItem = props => {
       ) : (
         <Wrapper>
           <Num>{props.value}</Num>
-          <Text color={props.color}>{props.text}</Text>
+          <Text color={props.color} text={props.text}>
+            {props.text}
+          </Text>
           <Title>AIR QUALITY INDEX</Title>
         </Wrapper>
       )}

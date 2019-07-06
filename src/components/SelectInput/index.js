@@ -6,7 +6,7 @@ import Wrapper from "./Wrapper";
 import StyledSelectInput from "./StyledSelectInput";
 import ArrowIcon from "./ArrowIcon";
 
-import OptionList from "./OptionList/index2";
+import OptionList from "./OptionList/index";
 
 import { OptionListContext } from "../../context/OptionListContext";
 import { OptionContext } from "../../context/OptionContext";

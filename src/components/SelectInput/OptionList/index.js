@@ -91,7 +91,13 @@ const OptionList = props => {
         setWeather({ ...weather, secondSelect: weatherData });
       } else if (props.inputText !== "") {
         setLoading(true);
-        const imageQuery = props.inputText.split(",")[0] + " city";
+        const imageQuery =
+          props.inputText.split(",")[0] +
+          " " +
+          props.inputText.split(",")[1] +
+          " city";
+
+        console.log(imageQuery);
         const responseImage = await axios.get(
           `https://api.unsplash.com/search/photos?client_id=cacdd0440db064f81ff57fed9acb29fb3701fbd3296e7e3f0dc0d19be877f479&page=1&per_page=1&query=${imageQuery}`
         );

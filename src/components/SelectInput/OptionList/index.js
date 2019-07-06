@@ -77,7 +77,8 @@ const OptionList = props => {
   useEffect(() => {
     const fetchWeather = async () => {
       // if value in first/second select is not empty string set weather in weather context
-      if (props.second && props.inputText !== "") {
+      console.log(selectedOption);
+      if (props.second && selectedOption.secondSelect !== null) {
         setLoading(true);
         const response = await axios.get(
           `https://api.airvisual.com/v2/city?city=${
@@ -90,7 +91,7 @@ const OptionList = props => {
         const weatherData = response.data.data.current;
         setLoading(false);
         setWeather({ ...weather, secondSelect: weatherData });
-      } else if (props.inputText !== "") {
+      } else if (selectedOption.firstSelect !== null) {
         setLoading(true);
         const imageQuery =
           props.inputText.split(",")[0] +
@@ -139,11 +140,15 @@ const OptionList = props => {
           )
           .map((city, index) => {
             return (
-              <Option key={index} id={index} onClick={handleOptionClick}>
+              <Option key={city.id} id={city.id} onClick={handleOptionClick}>
                 {city.city + ", " + city.country}
               </Option>
             );
           });
+
+        if (options.length === 0) {
+          return <Option>No results found</Option>;
+        }
         return options;
       };
       const setOptions = async () => {

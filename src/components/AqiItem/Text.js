@@ -7,7 +7,7 @@ const Text = styled.span`
   margin-left: ${props => (props.compare ? "0px" : "10px")};
   margin-top: ${props => (props.compare ? "5px" : "0px")};
   padding: 0px 7px;
-  text-align: center;
+  text-align: ${props => props.align};
   font-size: ${props =>
     props.text === "UNHEALTHY FOR SENSITIVE GROUPS" ? "16px" : "24px"};
   font-weight: 700;

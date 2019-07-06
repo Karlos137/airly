@@ -16,6 +16,7 @@ const SelectInput = props => {
   const [inputValue, setInputValue] = useState("");
   const [optionListOpen, setOptionListOpen] = useContext(OptionListContext);
   const [selectedOption] = useContext(OptionContext);
+  const [fliteredList, setFliteredList] = useState(false);
 
   useEffect(() => {
     if (selectedOption.firstSelect && props.first) {
@@ -31,14 +32,20 @@ const SelectInput = props => {
   const handleChange = e => {
     if (e.target.value !== "") {
       setOptionList(true);
+      setFliteredList(true);
+      setOptionListOpen(true);
     } else {
       setOptionList(false);
+      setFliteredList(false);
+      setOptionListOpen(false);
     }
     setInputValue(e.target.value);
   };
 
   // after clicking on arrow in input set full option list to visible/hidden
   const handleClick = () => {
+    setFliteredList(false);
+
     setOptionListOpen(!optionListOpen);
     setOptionListOpen(!optionListOpen);
     setOptionList(!optionList);
@@ -64,6 +71,7 @@ const SelectInput = props => {
           setInputValue={setInputValue}
           setOptionList={setOptionList}
           inputText={inputValue}
+          filtered={fliteredList}
           second={props.second}
         />
       ) : null}

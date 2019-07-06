@@ -58,6 +58,7 @@ const OptionList = props => {
             </Option>
           );
         });
+
         resolve(options);
       });
     };
@@ -115,9 +116,36 @@ const OptionList = props => {
     }
   }, [selectedOption]);
 
+  useEffect(() => {
+    if (props.filtered === true) {
+      const renderOptions = () => {
+        const options = cityList
+          .filter(
+            city =>
+              city.city.toLowerCase().includes(props.inputText.toLowerCase()) ||
+              city.country.toLowerCase().includes(props.inputText.toLowerCase())
+          )
+          .map((city, index) => {
+            return (
+              <Option key={index} id={index} onClick={handleOptionClick}>
+                {city.city + ", " + city.country}
+              </Option>
+            );
+          });
+        return options;
+      };
+      const setOptions = async () => {
+        const result = await renderOptions();
+        setOps(result);
+        setLoadingOptions(false);
+      };
+      setOptions();
+    }
+  }, [props.inputText]);
+
   return (
     <>
-      <StyledOptionList>
+      <StyledOptionList filtered={props.filtered}>
         {loadingOptions ? (
           <LoadingWrapper>
             <Loading />

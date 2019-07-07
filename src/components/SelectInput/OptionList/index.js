@@ -85,6 +85,7 @@ const OptionList = props => {
         // if value in first/second select is not empty string set weather in weather context
         console.log(selectedOption);
         if (props.second && selectedOption.secondSelect !== null) {
+          setWeather({ firstSelect: null, secondSelect: null });
           setLoading(true);
           const response = await axios.get(
             `https://api.airvisual.com/v2/city?city=${
@@ -98,6 +99,7 @@ const OptionList = props => {
           setLoading(false);
           setWeather({ ...weather, secondSelect: weatherData });
         } else if (selectedOption.firstSelect !== null) {
+          setWeather({ firstSelect: null, secondSelect: null });
           setLoading(true);
           const imageQuery =
             props.inputText.split(",")[0] +

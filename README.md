@@ -6,12 +6,13 @@
 <p>🌤<strong>Airly</strong> is a React app that allows users to get weather & AQI data for selected city. Users can also compare AQI between selected cities.</p>
 </div>
 
-##Design
+## Design
 
-####Phone
-<img src=""/>
-<img src=""/>
-<img src=""/>
+#### Phone
+
+<img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-landing-page.svg" width="150"/>
+<img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-select-city.svg" width="150"/>
+<img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-selected-city.svg" width="150"/>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

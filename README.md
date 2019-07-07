@@ -1,7 +1,9 @@
 <div align="center">
 <p>
-<img src="https://github.com/Karlos137/airly/blob/master/src/images/logo-big.svg" width="250"/>
+<img src="https://github.com/Karlos137/airly/blob/master/src/images/logo-big.svg" width="300"/>
 </p>
+
+<p>🏆<strong>Airly</strong> is a React app that allows users to get weather & AQI data for selected city. Users can also compare AQI between selected cities.</p>
 </div>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

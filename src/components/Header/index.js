@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { ReactComponent as Logo } from "../../images/logo-small.svg";
 import { ReactComponent as LogoDarkMode } from "../../images/logo-small-dark-mode.svg";
@@ -12,12 +13,26 @@ import DarkModeToggle from "../DarkModeToggle/index";
 
 //context imports
 import { ThemeContext } from "../../context/ThemeContext";
+import { WeatherContext } from "../../context/WeatherContext";
 
 const Header = () => {
   const [darkTheme] = useContext(ThemeContext);
+  const [, setWeather] = useContext(WeatherContext);
+
+  const handleLogoClick = () => {
+    setWeather({ firstSelect: null, seconfSelect: null });
+  };
   return (
     <StyledHeader>
-      <LogoWrapper>{darkTheme ? <LogoDarkMode /> : <Logo />}</LogoWrapper>
+      <LogoWrapper>
+        {darkTheme ? (
+          <LogoDarkMode />
+        ) : (
+          <Link to="/weather-aqi" onClick={handleLogoClick}>
+            <Logo />
+          </Link>
+        )}
+      </LogoWrapper>
       <Wrapper>
         <div />
         <Tabs />

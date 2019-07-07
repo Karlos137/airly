@@ -25,13 +25,9 @@ const Header = () => {
   return (
     <StyledHeader>
       <LogoWrapper>
-        {darkTheme ? (
-          <LogoDarkMode />
-        ) : (
-          <Link to="/weather-aqi" onClick={handleLogoClick}>
-            <Logo />
-          </Link>
-        )}
+        <Link to="/weather-aqi" onClick={handleLogoClick}>
+          {darkTheme ? <LogoDarkMode /> : <Logo />}
+        </Link>
       </LogoWrapper>
       <Wrapper>
         <div />

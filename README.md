@@ -3,7 +3,7 @@
 <img src="https://github.com/Karlos137/airly/blob/master/src/images/logo-big.svg" width="300"/>
 </p>
 
-<p>🌤<strong>Airly</strong> is a React app that allows users to get weather & AQI data for selected city. Users can also compare AQI between selected cities.</p>
+<p>🌤<strong> Airly</strong> is a React app that allows users to get weather & AQI data for selected city. Users can also compare AQI between selected cities.</p>
 </div>
 
 ## Design
@@ -11,7 +11,7 @@
 #### Phone
 
 <p float="left">
-<img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-landing-page.svg" width="250"/>
+<img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-landing-page.svg" style="vertical-align: top;" width="250"/>
 <img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-select-city.svg" width="250"/>
 <img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-selected-city.svg" width="250"/>
 </p>

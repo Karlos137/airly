@@ -10,7 +10,7 @@
 
 #### Phone
 
-![Phone Landing Page](https://github.com/Karlos137/airly/blob/master/src/images/design/phone-landing-page.svg =250x) ![Phone Select City](https://github.com/Karlos137/airly/blob/master/src/images/design/phone-select-city.svg =250x) ![Phone Selected City](https://github.com/Karlos137/airly/blob/master/src/images/design/phone-selected-city.svg =250x)
+![Phone Landing Page](https://github.com/Karlos137/airly/blob/master/src/images/design/phone-landing-page.svg) ![Phone Select City](https://github.com/Karlos137/airly/blob/master/src/images/design/phone-select-city.svg) ![Phone Selected City](https://github.com/Karlos137/airly/blob/master/src/images/design/phone-selected-city.svg)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

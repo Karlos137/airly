@@ -10,7 +10,11 @@
 
 #### Phone
 
-<img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-landing-page.svg" width="150"/><img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-select-city.svg" width="150"/><img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-selected-city.svg" width="150"/>
+<p float="left">
+<img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-landing-page.svg" width="150"/>
+<img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-select-city.svg" width="150"/>
+<img src="https://github.com/Karlos137/airly/blob/master/src/images/design/phone-selected-city.svg" width="150"/>
+</p>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

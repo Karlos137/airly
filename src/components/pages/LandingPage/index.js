@@ -18,7 +18,6 @@ import ContentWrapper from "./ContentWrapper";
 
 const LandingPage = () => {
   const [darkTheme] = useContext(ThemeContext);
-
   const [redirect, setRedirect] = useState(false);
 
   const handleRedirect = () => {

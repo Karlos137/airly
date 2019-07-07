@@ -49,7 +49,6 @@ const OptionList = props => {
       await setSelectedOption({ ...selectedOption, firstSelect: option });
     }
 
-    console.log(selectedOption.firstSelect);
     props.setOptionList(false);
   };
 
@@ -78,12 +77,9 @@ const OptionList = props => {
   }, []);
 
   useEffect(() => {
-    console.log("USE");
     if (effect) {
-      console.log("THIS");
       const fetchWeather = async () => {
         // if value in first/second select is not empty string set weather in weather context
-        console.log(selectedOption);
         if (props.second && selectedOption.secondSelect !== null) {
           setWeather({ firstSelect: null, secondSelect: null });
           setLoading(true);
@@ -107,7 +103,6 @@ const OptionList = props => {
             props.inputText.split(",")[1] +
             " city";
 
-          console.log(imageQuery);
           const responseImage = await axios.get(
             `https://api.unsplash.com/search/photos?client_id=cacdd0440db064f81ff57fed9acb29fb3701fbd3296e7e3f0dc0d19be877f479&page=1&per_page=1&query=${imageQuery}`
           );

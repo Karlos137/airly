@@ -67,7 +67,7 @@ const MainPage = props => {
     }
     return { aqiTextValue, aqiTextColor };
   };
-  console.log(weather);
+
   const renderWeatherTab = () => {
     if (weather.firstSelect === null) {
       return (
